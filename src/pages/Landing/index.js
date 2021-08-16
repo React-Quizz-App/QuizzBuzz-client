@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { CreateGame } from '../../components';
+import React, { useState } from "react";
+import { CreateGame } from "../../components";
 
 const Landing = () => {
   const [isFormShown, setIsFormShown] = useState(false);
+  const [isJoinFormShown, setIsJoinFormShown] = useState(false);
   const toggleForm = () => setIsFormShown((prev) => !prev);
   return (
     <div>
