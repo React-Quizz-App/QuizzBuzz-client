@@ -1,5 +1,9 @@
 import React from "react";
 
 const Landing = () => {
-  return <></>;
+  return (
+    <>
+      <h1>QuizzBuzz</h1>
+    </>
+  );
 };
