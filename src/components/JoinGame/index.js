@@ -1,6 +1,7 @@
 import React from "react";
 
 const JoinGame = () => {
+  const [username, setUsername] = useState("");
   return (
     <form>
       <label htmlFor="username"> Enter username</label>
