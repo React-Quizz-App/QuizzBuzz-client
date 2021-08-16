@@ -1,8 +1,8 @@
 import React from 'react';
-import { Landing } from './pages';
+import { Game } from './pages';
 
 const App = () => {
-  return <Landing />;
+  return <Game />;
 };
 
 export default App;
