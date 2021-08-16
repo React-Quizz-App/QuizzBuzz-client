@@ -4,7 +4,9 @@ import { CreateGame } from "../../components";
 const Landing = () => {
   const [isFormShown, setIsFormShown] = useState(false);
   const [isJoinFormShown, setIsJoinFormShown] = useState(false);
+
   const toggleForm = () => setIsFormShown((prev) => !prev);
+  const toggleJoinForm = () => setIsJoinFormShown((prev) => !prev);
   return (
     <div>
       <button>Highscores</button>
