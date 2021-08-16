@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+// import { createGame } from '../../actions';
 
 const CreateGame = ({socket}) => {
   //States
@@ -6,6 +8,8 @@ const CreateGame = ({socket}) => {
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [gameCode, setGameCode] = useState('');
+
+  // const dispatch = useDispatch();
 
   function codeGenerator() {
     const chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
