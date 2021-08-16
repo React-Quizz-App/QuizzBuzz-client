@@ -5,7 +5,17 @@ const CreateGame = () => {
   const [userName, setUserName] = useState('');
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
-  const [numOfPlayers, setNumOfPlayers] = useState('1');
+  const [gameCode, setGameCode] = useState('');
+
+  function codeGenerator() {
+    var chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
+    var result = '';
+    for (var i = 0; i < 6; i++) {
+      var x = Math.floor(Math.random() * chars.length);
+      result += chars[x];
+    }
+    return result;
+  }
 
   //Username handling
   const handleUserName = (e) => setUserName(e.target.value);
@@ -16,22 +26,22 @@ const CreateGame = () => {
   //Difficulty handling
   const handleDifficulty = (e) => setDifficulty(e.target.value);
 
-  //Player number handling
-  const handleNoOfPlayers = (e) => setNumOfPlayers(e.target.value);
-
   //Form submission handling
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // updateCity(cityInput);  a function coming from props
-    setUserName('');
-    setCategory('');
-    setDifficulty('');
-    setNumOfPlayers('1');
+    // setUserName('');
+    // setCategory('');
+    // setDifficulty('');
+    // setNumOfPlayers('1');
+    setGameCode(codeGenerator());
   };
+
+  console.log(userName, category, difficulty, gameCode);
+  //   const quickCheck = () => console.log(username, gameCode, difficulty, category);
 
   return (
     <form onSubmit={handleFormSubmit}>
-      {/* <label htmlFor="username">Enter username</label> */}
       <input
         type="text"
         id="username"
@@ -42,32 +52,18 @@ const CreateGame = () => {
         value={userName}
         onChange={handleUserName}
       />
-      <select name="Category" id="category">
+      <select name="Category" id="category" onChange={handleCategory}>
         <option value="placeholder">Category</option>
-        <option value="General Knowledge" onClick={handleCategory}>
-          General Knowledge
-        </option>
-        <option value="Entertainment: Books" onClick={handleCategory}>
-          Entertainment: Books
-        </option>
-        <option value="Entertainment: Film" onClick={handleCategory}>
-          Entertainment: Film
-        </option>
-        <option value="Entertainment: Music" onClick={handleCategory}>
-          Entertainment: Music
-        </option>
+        <option value="General Knowledge">General Knowledge</option>
+        <option value="Entertainment: Books">Entertainment: Books</option>
+        <option value="Entertainment: Film">Entertainment: Film</option>
+        <option value="Entertainment: Music">Entertainment: Music</option>
       </select>
-      <select name="Difficulty" id="difficulty">
+      <select name="Difficulty" id="difficulty" onChange={handleDifficulty}>
         <option value="placeholder-for-difficulty">Difficulty</option>
-        <option value="Easy" onClick={handleDifficulty}>
-          Easy
-        </option>
-        <option value="Medium" onClick={handleDifficulty}>
-          Medium
-        </option>
-        <option value="Hard" onClick={handleDifficulty}>
-          Hard
-        </option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
       </select>
       <input type="submit" value="Create A Game" />
     </form>
