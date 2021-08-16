@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CreateGame } from "../../components";
+import { CreateGame, JoinGame } from "../../components";
 
 const Landing = () => {
   const [isFormShown, setIsFormShown] = useState(false);
@@ -14,8 +14,9 @@ const Landing = () => {
         <h2>QuizzBuzz</h2>
       </div>
       <button onClick={toggleForm}>Create Game</button>
-      <button>Join Game</button>
+      <button onClick={toggleJoinForm}>Join Game</button>
       {isFormShown && <CreateGame />}
+      {isJoinFormShown && <JoinGame />}
     </div>
   );
 };
