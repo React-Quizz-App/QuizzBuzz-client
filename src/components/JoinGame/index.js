@@ -10,6 +10,7 @@ const JoinGame = () => {
         name="username"
         placeholder="Please enter a username"
       />
+      <input type="submit" value="SUBMIT" />
     </form>
   );
 };
