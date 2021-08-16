@@ -2,6 +2,7 @@ import React from "react";
 
 const JoinGame = () => {
   const [username, setUsername] = useState("");
+  const [gameUrl, setGameUrl] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDeafult();
