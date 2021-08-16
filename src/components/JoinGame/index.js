@@ -11,7 +11,7 @@ const JoinGame = () => {
   };
 
   // Handling the username
-  const updateInput = (e) => {
+  const handleUsername = (e) => {
     setUsername(e.target.value);
   };
 
@@ -23,7 +23,7 @@ const JoinGame = () => {
         id="username"
         name="username"
         placeholder="Please enter a username"
-        onChange={updateInput}
+        onChange={handleUsername}
       />
       <input
         type="text"
