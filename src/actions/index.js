@@ -6,4 +6,11 @@ const createGame = (data) => {
     }
 }
 
-export { createGame };
+const storeSocket = (socket) => {
+    return {
+        type: 'STORE_SOCKET',
+        payload: socket
+    }
+}
+
+export { createGame, storeSocket };

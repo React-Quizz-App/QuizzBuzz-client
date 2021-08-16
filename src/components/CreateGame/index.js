@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import { createGame } from '../../actions';
+import { useSelector } from 'react-redux';
 
-const CreateGame = ({socket}) => {
+const CreateGame = () => {
   //States
   const [userName, setUserName] = useState('');
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [gameCode, setGameCode] = useState('');
 
-  // const dispatch = useDispatch();
+  const socket = useSelector(state => state.socket);
 
   function codeGenerator() {
     const chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
@@ -33,11 +32,6 @@ const CreateGame = ({socket}) => {
   //Form submission handling
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // updateCity(cityInput);  a function coming from props
-    // setUserName('');
-    // setCategory('');
-    // setDifficulty('');
-    // setNumOfPlayers('1');
     let roomName = codeGenerator();
     socket.emit('create game', {
       "room": roomName,
@@ -46,6 +40,9 @@ const CreateGame = ({socket}) => {
       "host": userName
     });
     setGameCode(roomName);
+    setUserName('');
+    setCategory('');
+    setDifficulty('');
   };
 
   console.log(userName, category, difficulty, gameCode);
