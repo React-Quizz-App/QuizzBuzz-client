@@ -1,3 +1,4 @@
+import { useState } from "react";
 import React from "react";
 
 const JoinGame = () => {
@@ -22,7 +23,7 @@ const JoinGame = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <label htmlFor="username"> Enter username</label>
+      <label htmlFor="username"></label>
       <input
         type="text"
         id="username"
