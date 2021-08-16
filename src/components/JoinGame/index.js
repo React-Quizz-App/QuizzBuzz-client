@@ -7,7 +7,7 @@ const JoinGame = () => {
 
   // Handinling the submission of the whole form
   const handleFormSubmit = (e) => {
-    e.preventDeafult();
+    e.preventDefault();
     setUsername("");
   };
 
