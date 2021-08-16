@@ -27,3 +27,5 @@ const JoinGame = () => {
     </form>
   );
 };
+
+export default JoinGame;
