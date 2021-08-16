@@ -9,8 +9,7 @@ const App = () => {
   useEffect(()=>{
     const newSocket = io(ENDPOINT);
     setSocket(newSocket);
-  }, [])
-  // const socket = io(ENDPOINT);
+  }, []);
 
   return (<Landing socket={socket} />);
 };
