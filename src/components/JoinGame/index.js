@@ -2,7 +2,7 @@ import React from "react";
 
 const JoinGame = () => {
   const [username, setUsername] = useState("");
-  const [quizUrl, setQuizUrl] = useState("");
+  const [quizCode, setQuizCode] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDeafult();
@@ -26,9 +26,9 @@ const JoinGame = () => {
       />
       <input
         type="text"
-        id="quizUrl"
-        name="quizUrl"
-        placeholder="Please enter the URL for the Quiz you would like to join."
+        id="quizCode"
+        name="quizCode"
+        placeholder="Please enter the Code for the Quiz you would like to join."
         onChange={updateInput}
       />
       <input type="submit" value="Submit" />
