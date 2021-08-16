@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+// import { createGame } from '../../actions';
 
-const CreateGame = () => {
+const CreateGame = ({socket}) => {
   //States
   const [userName, setUserName] = useState('');
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [gameCode, setGameCode] = useState('');
 
+  // const dispatch = useDispatch();
+
   function codeGenerator() {
-    var chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
-    var result = '';
-    for (var i = 0; i < 6; i++) {
-      var x = Math.floor(Math.random() * chars.length);
+    const chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      const x = Math.floor(Math.random() * chars.length);
       result += chars[x];
     }
     return result;
@@ -34,7 +38,14 @@ const CreateGame = () => {
     // setCategory('');
     // setDifficulty('');
     // setNumOfPlayers('1');
-    setGameCode(codeGenerator());
+    let roomName = codeGenerator();
+    socket.emit('create game', {
+      "room": roomName,
+      category,  
+      difficulty, 
+      "host": userName
+    });
+    setGameCode(roomName);
   };
 
   console.log(userName, category, difficulty, gameCode);

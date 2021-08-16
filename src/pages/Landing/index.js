@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CreateGame, JoinGame } from "../../components";
 
-const Landing = () => {
+const Landing = ({socket}) => {
   const [isFormShown, setIsFormShown] = useState(false);
   const [isJoinFormShown, setIsJoinFormShown] = useState(false);
 
@@ -15,7 +15,7 @@ const Landing = () => {
       </div>
       <button onClick={toggleForm}>Create Game</button>
       <button onClick={toggleJoinForm}>Join Game</button>
-      {isFormShown && <CreateGame />}
+      {isFormShown && <CreateGame socket={socket}/>}
       {isJoinFormShown && <JoinGame />}
     </div>
   );
