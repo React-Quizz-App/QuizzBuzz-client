@@ -4,14 +4,15 @@ const JoinGame = () => {
   const [username, setUsername] = useState("");
   const [quizCode, setQuizCode] = useState("");
 
+  // Handinling the submission of the whole form
   const handleFormSubmit = (e) => {
     e.preventDeafult();
     setUsername("");
   };
 
+  // Handling the username
   const updateInput = (e) => {
-    const input = e.target.value;
-    setUsername(input);
+    setUsername(e.target.value);
   };
 
   return (
