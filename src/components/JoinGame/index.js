@@ -35,7 +35,7 @@ const JoinGame = () => {
         id="quizCode"
         name="quizCode"
         placeholder="Please enter the Code for the Quiz you would like to join."
-        onChange={updateInput}
+        onChange={handleQuizCode}
       />
       <input type="submit" value="Submit" />
     </form>
