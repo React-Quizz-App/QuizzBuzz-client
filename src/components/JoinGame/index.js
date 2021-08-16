@@ -15,6 +15,11 @@ const JoinGame = () => {
     setUsername(e.target.value);
   };
 
+  //Handling the quiz code
+  const handleQuizCode = (e) => {
+    setQuizCode(e.target.value);
+  };
+
   return (
     <form onSubmit={handleFormSubmit}>
       <label htmlFor="username"> Enter username</label>
