@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { CreateGame } from '../../components';
+import React, { useState } from "react";
+import { CreateGame, JoinGame } from "../../components";
 
 const Landing = () => {
   const [isFormShown, setIsFormShown] = useState(false);
+  const [isJoinFormShown, setIsJoinFormShown] = useState(false);
+
   const toggleForm = () => setIsFormShown((prev) => !prev);
+  const toggleJoinForm = () => setIsJoinFormShown((prev) => !prev);
   return (
     <div>
       <button>Highscores</button>
@@ -11,8 +14,9 @@ const Landing = () => {
         <h2>QuizzBuzz</h2>
       </div>
       <button onClick={toggleForm}>Create Game</button>
-      <button>Join Game</button>
+      <button onClick={toggleJoinForm}>Join Game</button>
       {isFormShown && <CreateGame />}
+      {isJoinFormShown && <JoinGame />}
     </div>
   );
 };
