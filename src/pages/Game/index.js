@@ -19,6 +19,7 @@ const Game = () => {
         let { data } = await axios.get(
           `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`
         );
+
         let { results } = data;
         setGameQuestions(results);
       } catch (err) {
@@ -28,9 +29,12 @@ const Game = () => {
     fetchQuizzQuestions();
   }, []);
 
+  console.log(gameQuestions[0]);
+  console.log(gameQuestions);
+
   return gameQuestions.length ? (
     <div>
-      <Question data={questions[0]} />
+      <Question data={gameQuestions[0]} />
     </div>
   ) : (
     <h2>Loading...</h2>
