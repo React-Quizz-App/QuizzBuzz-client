@@ -33,4 +33,16 @@ const startGame = () => {
     }
 }
 
-export { changeState, storeSocket, storeUser, addUser, startGame };
+const incrementQuestionNumber = () => {
+    return {
+        type: 'INCREMENT_QUESTION'
+    }
+}
+
+const updateScore = () => {
+    return {
+        type: 'UPDATE_SCORE'
+    }
+}
+
+export { changeState, storeSocket, storeUser, addUser, startGame, incrementQuestionNumber, updateScore };
