@@ -9,7 +9,7 @@ const App = () => {
   
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     const newSocket = io(ENDPOINT);
     dispatch(storeSocket(newSocket));
     newSocket.on('init state', (state)=>{
