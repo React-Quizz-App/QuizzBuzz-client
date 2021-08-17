@@ -66,12 +66,11 @@ const CreateGame = () => {
     setUserName('');
     setCategory('');
     setDifficulty('');
-    // setIsFormSubmitted(true);
+    setIsFormSubmitted(true);
   };
 
   return (
     <>
-    {isFormSubmitted && <Redirect to='/waiting-room'/>}
     <form onSubmit={handleFormSubmit}>
       <input
         type="text"
@@ -81,9 +80,10 @@ const CreateGame = () => {
         onMouseOver={(e) => (e.target.placeholder = '')}
         onMouseOut={(e) => (e.target.placeholder = 'Enter your chosen username')}
         value={userName}
+        required
         onChange={handleUserName}
       />
-      <select name="Category" id="category" onChange={handleCategory}>
+      <select name="Category" id="category" onChange={handleCategory} required>
         <option value="placeholder">Category</option>
         <option value="General Knowledge">General Knowledge</option>
         <option value="Entertainment: Books">Entertainment: Books</option>
@@ -92,7 +92,7 @@ const CreateGame = () => {
         <option value="Sports">Sports</option>
         <option value="Science: Computers">Science: Computers</option>
       </select>
-      <select name="Difficulty" id="difficulty" onChange={handleDifficulty}>
+      <select name="Difficulty" id="difficulty" onChange={handleDifficulty} required>
         <option value="placeholder-for-difficulty">Difficulty</option>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
@@ -100,6 +100,7 @@ const CreateGame = () => {
       </select>
       <input type="submit" value="Create A Game" />
     </form>
+    {isFormSubmitted && <Redirect to='/waiting-room'/>}
     </>
   );
 };

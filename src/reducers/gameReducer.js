@@ -17,6 +17,16 @@ const gameReducer = (state=initState, action) => {
                 ...state,
                 user: action.payload
             };
+        case 'ADD_USER':
+            let newUsersList = [...state.gameState.users];
+            newUsersList.push({name: action.payload, score: 0})
+            return {
+                ...state,
+                gameState: {
+                    ...state.gameState,
+                    users: newUsersList
+                }
+            };
         default:
             return state;
     }
