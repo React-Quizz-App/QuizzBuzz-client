@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Landing, WaitingRoom } from './pages';
+import { Landing, WaitingRoom, Game } from './pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
 
@@ -47,6 +47,9 @@ const App = () => {
       </Route>
       <Route path='/waiting-room'>
         <WaitingRoom />
+      </Route>
+      <Route path='/game'>
+        <Game />
       </Route>
     </Switch>
   );
