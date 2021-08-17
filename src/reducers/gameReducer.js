@@ -1,6 +1,7 @@
 const initState = {
     gameState: {},
-    socket: {}
+    socket: {},
+    user: ""
 }
 
 const gameReducer = (state=initState, action) => {
@@ -11,6 +12,11 @@ const gameReducer = (state=initState, action) => {
         case 'STORE_SOCKET':
             return {...state, 
                 socket: action.payload};
+        case 'STORE_USER':
+            return {
+                ...state,
+                user: action.payload
+            };
         default:
             return state;
     }
