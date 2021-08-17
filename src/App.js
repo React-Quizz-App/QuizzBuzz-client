@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Landing } from './pages';
+
+import { Landing, WaitingRoom } from './pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
+
 const io = require('socket.io-client');
 const ENDPOINT = 'http://localhost:3000';
 import { createGame, storeSocket, addUser } from './actions';
@@ -24,6 +26,7 @@ const App = () => {
     setSocket(newSocket);
   }, []);
 
+
   useEffect(()=>{
     if (socket){
       socket.on('user joining waiting room', (user) => {
@@ -42,8 +45,12 @@ const App = () => {
       <Route exact path='/'>
         <Landing />
       </Route>
+      <Route path='/waiting-room'>
+        <WaitingRoom />
+      </Route>
     </Switch>
   );
+
 
 
 export default App;
