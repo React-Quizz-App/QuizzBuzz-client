@@ -13,7 +13,6 @@ const App = () => {
   const clientUser = useSelector(state=>state.user);
   const host = useSelector(state => state.gameState.host);
   const gameState = useSelector(state => state.gameState);
-  console.log(gameState)
 
   // initialise a socket and events to listen for
   useEffect(()=>{
@@ -26,15 +25,11 @@ const App = () => {
   }, []);
 
   useEffect(()=>{
-    console.log('second useffect', !!socket)
     if (socket){
       socket.on('user joining waiting room', (user) => {
-        console.log(clientUser, host);
         if (clientUser === host){
-          console.log(`${user} has joined the game`)
           dispatch(addUser(user))
           let newGameState = {...gameState};
-          console.log(newGameState);
           newGameState.users.push({name: user, score: 0});
           socket.emit('send state to players', newGameState);
         }
