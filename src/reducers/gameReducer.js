@@ -6,7 +6,7 @@ const initState = {
 
 const gameReducer = (state=initState, action) => {
     switch(action.type) {
-        case 'CREATE_GAME':
+        case 'CHANGE_GAME_STATE':
             return {...state, 
                 gameState: action.payload};
         case 'STORE_SOCKET':
@@ -27,6 +27,14 @@ const gameReducer = (state=initState, action) => {
                     users: newUsersList
                 }
             };
+        case 'START_GAME':
+            return {
+                ...state,
+                gameState: {
+                    ...state.gameState,
+                    isGameStarted: true
+                }
+            }
         default:
             return state;
     }
