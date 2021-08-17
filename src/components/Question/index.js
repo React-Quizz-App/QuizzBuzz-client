@@ -1,6 +1,8 @@
 import React from "react";
 // Making Questions page component to be rendered on game page
-const Question = () => (
+const Question = ({
+  results: { question, correct_answer, incorrect_answer },
+}) => (
   <div>
     <div>
       <h2>{gameQuestions[0]}</h2>
