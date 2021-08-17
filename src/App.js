@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Landing } from './pages';
+import { Landing, WaitingRoom } from './pages';
 import { useDispatch } from 'react-redux';
 const io = require('socket.io-client');
 const ENDPOINT = 'http://localhost:3000';
@@ -17,7 +17,7 @@ const App = () => {
     });
   }, []);
 
-  return (<Landing />);
+  return (<WaitingRoom />);
 };
 
 export default App;
