@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Question } from '../../components';
-import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 //To do:
 // - Build question page in JSX [ x ]
@@ -11,46 +11,16 @@ import axios from 'axios';
 // - Note: Easier way to do this would be to not alert user of whether they answered correctly during the game
 
 const Game = () => {
-  const [gameQuestions, setGameQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameEnded, setGameEnded] = useState(false);
-
-  useEffect(() => {
-    async function fetchQuizzQuestions() {
-      try {
-        let { data } = await axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`);
-
-        let { results } = data;
-        setGameQuestions(results);
-      } catch (err) {
-        console.warn(err);
-      }
-    }
-    fetchQuizzQuestions();
-  }, []);
-
-  console.log(gameQuestions[0]);
-  console.log(gameQuestions);
-
-  const handleAnswer = (answer) => {
-    const newIndex = currentIndex + 1;
-    setCurrentIndex(newIndex);
-
-    if (answer === gameQuestions[currentIndex].correct_answer) {
-      setScore(score + 1);
-    }
-
-    if (newIndex >= gameQuestions.length) {
-      setGameEnded(true);
-    }
-  };
-
+  const questionNumber = useSelector(state => state.gameState.questionNumber);
+  const gameQuestions = useSelector(state => state.gameState.questions);
+  
   return gameEnded ? (
     <div>This is a replacer for scoreboard at end of game. Your score was {score}</div>
   ) : gameQuestions.length ? (
     <div>
-      <Question data={gameQuestions[currentIndex]} handleAnswer={handleAnswer} />
+       <Question data={gameQuestions[questionNumber-1]}  />
     </div>
   ) : (
     <h2>Loading...</h2>
