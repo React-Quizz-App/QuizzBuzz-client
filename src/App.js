@@ -17,7 +17,7 @@ const App = () => {
     });
   }, []);
 
-  return (<Landing />);
+  return (<WaitingRoom />);
 };
 
 export default App;
