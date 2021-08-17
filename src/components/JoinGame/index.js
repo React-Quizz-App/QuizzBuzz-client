@@ -1,14 +1,28 @@
 import { useState } from "react";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { storeUser } from "../../actions";
 
 const JoinGame = () => {
   const [username, setUsername] = useState("");
   const [quizCode, setQuizCode] = useState("");
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const dispatch = useDispatch();
+  const socket = useSelector(state => state.socket);
 
   // Handinling the submission of the whole form
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    dispatch(storeUser(username));
+    socket.emit('join game', {
+      username,
+      room: quizCode
+    });
     setUsername("");
+    setQuizCode("");
+    setIsFormSubmitted(true);
   };
 
   // Handling the username
@@ -22,6 +36,7 @@ const JoinGame = () => {
   };
 
   return (
+    <>
     <form onSubmit={handleFormSubmit}>
       <label htmlFor="username"></label>
       <input
@@ -40,6 +55,8 @@ const JoinGame = () => {
       />
       <input type="submit" value="Join Quiz!" />
     </form>
+    { isFormSubmitted && <Redirect to='waiting-room' /> }
+    </>
   );
 };
 
