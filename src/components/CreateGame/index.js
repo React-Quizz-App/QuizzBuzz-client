@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeUser } from '../../actions';
 
 const CreateGame = () => {
   //States
@@ -7,6 +8,8 @@ const CreateGame = () => {
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [gameCode, setGameCode] = useState('');
+
+  const dispatch = useDispatch();
 
   const socket = useSelector(state => state.socket);
 
@@ -40,6 +43,7 @@ const CreateGame = () => {
       "host": userName
     });
     setGameCode(roomName);
+    dispatch(storeUser(userName));
     setUserName('');
     setCategory('');
     setDifficulty('');
