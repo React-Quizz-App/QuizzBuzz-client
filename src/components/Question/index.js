@@ -19,17 +19,22 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
 
   useEffect(() => {
     function decrementCounter(){
-      setCounter(prevCount => prevCount - 1);
+      setCounter(prevCount => prevCount - 1)
     }
-    decrementCounter();
     const stream = setInterval(()=>decrementCounter(), 1000)
     return () => clearInterval(stream)
   }, [question]);
 
-  if (counter === 0 ){
-    dispatch(incrementQuestionNumber())
-    setCounter(10);
-  };
+  useEffect(()=>{
+    if (counter === 0 ){
+      if (gameState.questionNumber <= 10){
+        dispatch(incrementQuestionNumber());
+        setCounter(10);
+      } else {
+        console.log('game over');
+      }
+    };
+  }, [counter])
 
   function handleChange(event){
     setSelectedOption(event.target.value);
@@ -40,6 +45,12 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     event.preventDefault();
     console.log(selectedOption);
     // increment question number by one
+    if (gameState.questionNumber !== 10){
+      dispatch(incrementQuestionNumber());
+      setCounter(10);
+    } else {
+      console.log('game over');
+    }
     // if score is correct update the score
     if (selectedOption === correct_answer && gameState.questionNumber <= 10){
       dispatch(updateScore());
