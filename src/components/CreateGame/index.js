@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeUser } from '../../actions';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const CreateGame = () => {
   //States
@@ -8,9 +10,9 @@ const CreateGame = () => {
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [gameCode, setGameCode] = useState('');
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const dispatch = useDispatch();
-
   const socket = useSelector(state => state.socket);
 
   function codeGenerator() {
@@ -23,6 +25,20 @@ const CreateGame = () => {
     return result;
   }
 
+  async function getQuestions(cat, diff){
+    const categoryMap = {
+      "General Knowledge": 9,
+      "Entertainment: Books": 10,
+      "Entertainment: Film": 11,
+      "Entertainment: Music": 12,
+      "Science: Computers": 18,
+      "Sports": 21,
+    }
+    const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
+    const { data } = await axios.get(url);
+    return data.results;
+  }
+
   //Username handling
   const handleUserName = (e) => setUserName(e.target.value);
 
@@ -33,26 +49,29 @@ const CreateGame = () => {
   const handleDifficulty = (e) => setDifficulty(e.target.value);
 
   //Form submission handling
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     let roomName = codeGenerator();
+    // axios request to get questions 
+    const questions = await getQuestions(category, difficulty);
     socket.emit('create game', {
       "room": roomName,
       category,  
       difficulty, 
-      "host": userName
+      "host": userName,
+      questions
     });
     setGameCode(roomName);
     dispatch(storeUser(userName));
     setUserName('');
     setCategory('');
     setDifficulty('');
+    // setIsFormSubmitted(true);
   };
 
-  console.log(userName, category, difficulty, gameCode);
-  //   const quickCheck = () => console.log(username, gameCode, difficulty, category);
-
   return (
+    <>
+    {isFormSubmitted && <Redirect to='/waiting-room'/>}
     <form onSubmit={handleFormSubmit}>
       <input
         type="text"
@@ -70,15 +89,18 @@ const CreateGame = () => {
         <option value="Entertainment: Books">Entertainment: Books</option>
         <option value="Entertainment: Film">Entertainment: Film</option>
         <option value="Entertainment: Music">Entertainment: Music</option>
+        <option value="Sports">Sports</option>
+        <option value="Science: Computers">Science: Computers</option>
       </select>
       <select name="Difficulty" id="difficulty" onChange={handleDifficulty}>
         <option value="placeholder-for-difficulty">Difficulty</option>
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
       </select>
       <input type="submit" value="Create A Game" />
     </form>
+    </>
   );
 };
 
