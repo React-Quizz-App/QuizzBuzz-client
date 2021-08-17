@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Question } from '../../components';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Question } from "../../components";
+import axios from "axios";
 
 //To do:
-// - Build question page in JSX
-// - Take JSX and set new component
+// - Build question page in JSX [ x ]
+// - Take JSX and set new component []
 // - Shuffle answers in array
 // - Create onClick handling of answer - WITHOUT MAKING ANSWER CLEAR
 // - Have a set timeout which prompts next question, tells us if answer is correct and disables user from clicking a new button
@@ -12,12 +12,14 @@ import axios from 'axios';
 
 const Game = () => {
   const [gameQuestions, setGameQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = state(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     async function fetchQuizzQuestions() {
       try {
-        let { data } = await axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`);
+        let { data } = await axios.get(
+          `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`
+        );
 
         let { results } = data;
         setGameQuestions(results);
@@ -37,7 +39,10 @@ const Game = () => {
 
   return gameQuestions.length ? (
     <div>
-      <Question data={gameQuestions[currentIndex]} handleAnswer={handleAnswer} />
+      <Question
+        data={gameQuestions[currentIndex]}
+        handleAnswer={handleAnswer}
+      />
     </div>
   ) : (
     <h2>Loading...</h2>
