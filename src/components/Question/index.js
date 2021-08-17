@@ -7,9 +7,9 @@ const Question = () => (
     </div>
     <div>
       <button>{gameQuestions[0].correct_answer}</button>
-      <button>Answer2</button>
-      <button>Answer3</button>
-      <button>Answer4</button>
+      <button>{gameQuestions[0].incorrect_answer[0]}</button>
+      <button>{gameQuestions[0].incorrect_answer[1]}</button>
+      <button>{gameQuestions[0].incorrect_answer[2]}</button>
     </div>
   </div>
 );
