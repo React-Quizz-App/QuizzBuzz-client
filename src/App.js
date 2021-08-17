@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import { Landing, WaitingRoom, Game } from './pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
-
 const io = require('socket.io-client');
 const ENDPOINT = 'http://localhost:3000';
 import { changeState, storeSocket, addUser } from './actions';
@@ -54,6 +52,5 @@ const App = () => {
     </Switch>
   );
   }
-
 
 export default App;
