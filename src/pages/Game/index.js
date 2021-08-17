@@ -1,5 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import 'Question' from '../../components';
 import axios from 'axios';
+
+//To do:
+// - Build question page in JSX
+// - Take JSX and set new component
+// - Shuffle answers in array
+// - Create onClick handling of answer - WITHOUT MAKING ANSWER CLEAR
+// - Have a set timeout which prompts next question, tells us if answer is correct and disables user from clicking a new button
+// - Note: Easier way to do this would be to not alert user of whether they answered correctly during the game
 
 const Game = () => {
   const [gameQuestions, setGameQuestions] = useState([]);
@@ -10,8 +19,6 @@ const Game = () => {
         let { data } = await axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`);
         let { results } = data;
         setGameQuestions(results);
-        // console.log(gameQuestions[0].category);
-        // console.log(data);
       } catch (err) {
         console.warn(err);
       }
@@ -19,29 +26,15 @@ const Game = () => {
     fetchQuizzQuestions();
   }, []);
 
-  const initialRender = useRef(true);
 
-  useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      // setPressed(true);
-      let counter = 0;
-      const Ques = gameQuestions[counter].question;
+  return gameQuestions.length ? (
+      <div>
+        <Question data={questions[0]} />
+      </div>
+  ) : (
+      <h2>Loading...</h2>
 
-      const timer = setInterval(4500);
-      counter++;
-      console.log(Ques);
-      return () => clearInterval(timer);
-    }
-  }, [gameQuestions]);
-  //   gameQuestions.length
-
-  return (
-    <>
-      <p>{gameQuestions.length ? gameQuestions[0].category : ''}</p>
-    </>
-  );
+  )
 };
 
 export default Game;
