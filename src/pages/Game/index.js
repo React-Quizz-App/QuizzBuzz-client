@@ -13,6 +13,8 @@ import axios from 'axios';
 const Game = () => {
   const [gameQuestions, setGameQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [gameEnded, setGameEnded] = useState(false);
 
   useEffect(() => {
     async function fetchQuizzQuestions() {
@@ -32,10 +34,21 @@ const Game = () => {
   console.log(gameQuestions);
 
   const handleAnswer = (answer) => {
-    setCurrentIndex(currentIndex + 1);
+    const newIndex = currentIndex + 1;
+    setCurrentIndex(newIndex);
+
+    if (answer === gameQuestions[currentIndex].correct_answer) {
+      setScore(score + 1);
+    }
+
+    if (newIndex >= gameQuestions.length) {
+      setGameEnded(true);
+    }
   };
 
-  return gameQuestions.length ? (
+  return gameEnded ? (
+    <div>This is a replacer for scoreboard at end of game. Your score was {score}</div>
+  ) : gameQuestions.length ? (
     <div>
       <Question data={gameQuestions[currentIndex]} handleAnswer={handleAnswer} />
     </div>
