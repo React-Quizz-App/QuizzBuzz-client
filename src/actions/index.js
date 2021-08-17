@@ -1,7 +1,7 @@
 
 const changeState = (data) => {
     return {
-        type: 'CREATE_GAME',
+        type: 'CHANGE_GAME_STATE',
         payload: data
     }
 }
