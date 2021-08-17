@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Quicksand&family=Lato&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+.waiting-room-page {
+    width: 100%;
+    height: 100vh;
+    background: #1E2240;
+}
+.waiting-room-page header h1 {
+    font-family: 'Palette Mosaic', cursive;
+    font-size: 50px;
+}
+header {
+    width: 100%;
+    height: 15%;
+    background: #3c4e76;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.waiting-room-outer-container {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.waiting-room-inner {
+    width: 60%;
+    height: 80%;
+    box-shadow: 0 0 10px 10px rgb(250, 143, 3);
+}
+.waiting-message {
+    width: 100%;
+    height: 20%;
+    /* border: solid 1px red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.waiting-message h1, h2 {
+    font-family: 'Quicksand', sans-serif;
+}
+.waiting-message h2 {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+.player-section {
+    width: 100%;
+    height: 60%;
+    padding: 2% 0 0% 5%;
+    /* border: solid 1px green; */
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.player-card {
+    width: 20%;
+    height: auto;
+    border: solid 1px rgb(250, 143, 3);
+    margin-right: 5%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 0.1s;
+}
+.player-card:hover {
+    background: orange;
+}
+.start-section {
+    width: 100%;
+    height: 20%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.start-game {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 5%;
+    transition: ease-in-out 0.1s;
+}
+.start-game:hover {
+    background: orange;
+}
+.game-link {
+    /* width: 50%; */
+    margin-left: 5%;
+    background-color: rgb(255, 255, 255);
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game-link-left {
+    flex: 5;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange ;
+
+}
+.game-link-right {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.game-link p {
+    color:black;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0 20px;
+}
+.game-link span {
+    color:black;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0 10px;
+}
