@@ -3,16 +3,17 @@ import React from 'react';
 const Question = ({ handleAnswer, data: { question, correct_answer, incorrect_answers } }) => {
   const shuffledAnswer = [correct_answers, ...incorrect_answers].sort(() => Math.random() - 0.5);
   console.log(incorrect_answers);
+const Button = ({ answer }) => <button>{answer}</button>;
   return (
     <div>
       <div>
         <h2>{question}</h2>
       </div>
       <div>
-        <button>{correct_answer}</button>
-        <button>{incorrect_answers[0]}</button>
-        <button>{incorrect_answers[1]}</button>
-        <button>{incorrect_answers[2]}</button>
+        <Button answer={correct_answer} />
+        <Button answer={incorrect_answers[0]} />
+        <Button answer={incorrect_answers[1]} />
+        <Button answer={incorrect_answers[2]} />
       </div>
     </div>
   );
