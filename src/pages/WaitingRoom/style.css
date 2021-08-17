@@ -63,7 +63,7 @@ header {
 }
 .player-card {
     width: 20%;
-    height: auto;
+    height: 40%;
     border: solid 1px rgb(250, 143, 3);
     margin-right: 5%;
     margin-bottom: 2%;
