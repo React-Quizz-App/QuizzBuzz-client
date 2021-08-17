@@ -3,7 +3,7 @@ import React from "react";
 const Question = () => (
   <div>
     <div>
-      <h2>Here is where the question will go</h2>
+      <h2>{gameQuestions[0]}</h2>
     </div>
     <div>
       <button>{gameQuestions[0].correct_answer}</button>
