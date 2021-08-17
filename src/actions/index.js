@@ -1,5 +1,5 @@
 
-const createGame = (data) => {
+const changeState = (data) => {
     return {
         type: 'CREATE_GAME',
         payload: data
@@ -27,5 +27,10 @@ const addUser = (user) => {
     }
 }
 
+const startGame = () => {
+    return {
+        type: 'START_GAME',
+    }
+}
 
-export { createGame, storeSocket, storeUser, addUser };
+export { changeState, storeSocket, storeUser, addUser, startGame };

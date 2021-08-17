@@ -27,6 +27,14 @@ const gameReducer = (state=initState, action) => {
                     users: newUsersList
                 }
             };
+        case 'START_GAME':
+            return {
+                ...state,
+                gameState: {
+                    ...state.gameState,
+                    isGameStarted: true
+                }
+            }
         default:
             return state;
     }

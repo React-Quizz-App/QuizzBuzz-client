@@ -1,12 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { startGame } from '../../actions';
 import './style.css';
 
 const WaitingRoom = () => {
 
     const data = useSelector(state => state.gameState);
     const user = useSelector(state => state.user);
-    console.log('waiting room data: ', data);
+    const socket = useSelector(state => state.socket);
+    const dispatch = useDispatch()
+
+    function handleButtonClick(){
+        dispatch(startGame());
+        let newState = {
+            ...data,
+            isGameStarted: true
+        }
+        socket.emit('send state to players', newState )
+    }
     return (
         <> 
         {data.users && <div className="waiting-room-page">
@@ -35,7 +47,7 @@ const WaitingRoom = () => {
                                                                                  <span>{data.roomName}</span>
                                                                             </div>
                                                                         </div>
-                                                                        <button className="start-game">START GAME</button>
+                                                                        <button onClick={handleButtonClick} className="start-game">START GAME</button>
                                                                     </div> 
                                                                     : 
                                                                     <div className="start-section">
@@ -53,6 +65,7 @@ const WaitingRoom = () => {
             </div>
             {console.log(data)}
         </div>}
+        {data.isGameStarted && <Redirect to='/game' />}
         </>
      );
 }

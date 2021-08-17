@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 
 const io = require('socket.io-client');
 const ENDPOINT = 'http://localhost:3000';
-import { createGame, storeSocket, addUser } from './actions';
+import { changeState, storeSocket, addUser } from './actions';
 
 const App = () => {
   
@@ -21,7 +21,7 @@ const App = () => {
     const newSocket = io(ENDPOINT);
     dispatch(storeSocket(newSocket));
     newSocket.on('change state', (state)=>{
-      dispatch(createGame(state));
+      dispatch(changeState(state));
     });
     setSocket(newSocket);
   }, []);
