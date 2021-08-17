@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import 'Question' from '../../components';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Question } from "../../components";
+import axios from "axios";
 
 //To do:
 // - Build question page in JSX
@@ -16,7 +16,9 @@ const Game = () => {
   useEffect(() => {
     async function fetchQuizzQuestions() {
       try {
-        let { data } = await axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`);
+        let { data } = await axios.get(
+          `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`
+        );
         let { results } = data;
         setGameQuestions(results);
       } catch (err) {
@@ -26,15 +28,13 @@ const Game = () => {
     fetchQuizzQuestions();
   }, []);
 
-
   return gameQuestions.length ? (
-      <div>
-        <Question data={questions[0]} />
-      </div>
+    <div>
+      <Question data={questions[0]} />
+    </div>
   ) : (
-      <h2>Loading...</h2>
-
-  )
+    <h2>Loading...</h2>
+  );
 };
 
 export default Game;
