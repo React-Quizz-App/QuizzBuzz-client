@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 // Making Questions page component to be rendered on game page
+const Question = ({ handleAnswer, data: { question, correct_answer, incorrect_answers } }) => {
+  const shuffledAnswer = [correct_answers, ...incorrect_answers].sort(() => Math.random() - 0.5);
+  console.log(incorrect_answers);
 const Button = ({ answer }) => <button>{answer}</button>;
-const Question = ({
-  data: { question, correct_answer, incorrect_answers },
-}) => {
   return (
     <div>
       <div>
