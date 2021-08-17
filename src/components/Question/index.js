@@ -6,7 +6,7 @@ const Question = () => (
       <h2>Here is where the question will go</h2>
     </div>
     <div>
-      <button>Answer1</button>
+      <button>{gameQuestions[0].correct_answer}</button>
       <button>Answer2</button>
       <button>Answer3</button>
       <button>Answer4</button>
