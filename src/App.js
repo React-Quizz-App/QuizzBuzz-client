@@ -12,8 +12,7 @@ const App = () => {
   useEffect(()=>{
     const newSocket = io(ENDPOINT);
     dispatch(storeSocket(newSocket));
-    newSocket.on('change state', (state)=>{
-      console.log('change state event fired');
+    newSocket.on('init state', (state)=>{
       dispatch(createGame(state));
     });
   }, []);
