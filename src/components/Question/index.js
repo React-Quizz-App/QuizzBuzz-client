@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import he from 'he';
 import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
+import './style.css'
 
 
 const Question = ({ data: { question, correct_answer, incorrect_answers } }) => {
@@ -71,19 +72,20 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
 
   return (
     <>
-    <div>
-      <div>
+    <div className="individual-question-section">
+      <div className="actual-question">
         <h2>{he.decode(question)}</h2>
       </div>
       <p>{counter}</p>
       <div>
         <form onSubmit={handleSubmit}>
         <FormControl component='fieldset'>
-          <FormLabel component='legend'>Select an answer:</FormLabel>
+          <FormLabel component='legend'></FormLabel>
+          {/* <FormLabel component='legend'>Select an answer:</FormLabel> */}
           <RadioGroup aria-label="gender" name="gender1" value={selectedOption} onChange={handleChange} >
             {answerElements}
           </RadioGroup>
-          <Button type="submit" variant="outlined" color="primary">Submit</Button>
+          <Button type="submit" variant="outlined" color="primary" className="question-form-btn">Submit</Button>
         </FormControl>
         </form>
       </div>
