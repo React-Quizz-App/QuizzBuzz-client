@@ -99,6 +99,8 @@
 .start-game {
     position: absolute;
     right: 5%;
+    height: 50%;
+    width: auto;
 }
 .btn:hover {
     background: orange;
