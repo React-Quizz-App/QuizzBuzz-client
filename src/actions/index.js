@@ -47,4 +47,17 @@ const updateScore = (user, score) => {
     }
 }
 
-export { changeState, storeSocket, storeUser, addUser, startGame, incrementQuestionNumber, updateScore };
+const setQuizAsComplete = (user) => {
+    return {
+        type: 'COMPLETE_QUIZ',
+        payload: user
+    }
+}
+
+const resetQuestionNumber = () => {
+    return {
+        type: 'RESET_QUESTION_NUMBER',
+    }
+}
+
+export { changeState, storeSocket, storeUser, addUser, startGame, incrementQuestionNumber, updateScore, setQuizAsComplete, resetQuestionNumber };

@@ -37,6 +37,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       } else {
         console.log('game over');
         setIsGameOver(true);
+    
       }
     };
   }, [counter])
@@ -48,7 +49,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
   function handleSubmit(event){
     event.preventDefault();
     // increment question number by one
-    if (gameState.questionNumber !== 10){
+    if (gameState.questionNumber <= 10){
       dispatch(incrementQuestionNumber());
       setCounter(30);
     } else {
@@ -93,13 +94,3 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
 };
 
 export default Question;
-
-{/* <FormControl component="fieldset">
-  <FormLabel component="legend">Gender</FormLabel>
-  <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-    <FormControlLabel value="female" control={<Radio />} label="Female" />
-    <FormControlLabel value="male" control={<Radio />} label="Male" />
-    <FormControlLabel value="other" control={<Radio />} label="Other" />
-    <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
-  </RadioGroup>
-</FormControl> */}
