@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeUser } from '../../actions';
@@ -21,18 +22,18 @@ const CreateGame = () => {
 
   const classes = useStyles();
   //States
-  const [userName, setUserName] = useState('');
-  const [category, setCategory] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [gameCode, setGameCode] = useState('');
+  const [userName, setUserName] = useState("");
+  const [category, setCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [gameCode, setGameCode] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const dispatch = useDispatch();
-  const socket = useSelector(state => state.socket);
+  const socket = useSelector((state) => state.socket);
 
   function codeGenerator() {
-    const chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
-    let result = '';
+    const chars = "acdefhiklmnoqrstuvwxyz0123456789".split("");
+    let result = "";
     for (let i = 0; i < 6; i++) {
       const x = Math.floor(Math.random() * chars.length);
       result += chars[x];
@@ -40,15 +41,15 @@ const CreateGame = () => {
     return result;
   }
 
-  async function getQuestions(cat, diff){
+  async function getQuestions(cat, diff) {
     const categoryMap = {
       "General Knowledge": 9,
       "Entertainment: Books": 10,
       "Entertainment: Film": 11,
       "Entertainment: Music": 12,
       "Science: Computers": 18,
-      "Sports": 21,
-    }
+      Sports: 21,
+    };
     const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
     const { data } = await axios.get(url);
     return data.results;
@@ -67,20 +68,20 @@ const CreateGame = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     let roomName = codeGenerator();
-    // axios request to get questions 
+    // axios request to get questions
     const questions = await getQuestions(category, difficulty);
-    socket.emit('create game', {
-      "room": roomName,
-      category,  
-      difficulty, 
-      "host": userName,
-      questions
+    socket.emit("create game", {
+      room: roomName,
+      category,
+      difficulty,
+      host: userName,
+      questions,
     });
     setGameCode(roomName);
     dispatch(storeUser(userName));
-    setUserName('');
-    setCategory('');
-    setDifficulty('');
+    setUserName("");
+    setCategory("");
+    setDifficulty("");
     setIsFormSubmitted(true);
   };
 
