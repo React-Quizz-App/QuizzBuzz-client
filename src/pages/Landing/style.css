@@ -24,7 +24,7 @@
 }
 .start-form-section {
     width: 100%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     margin-top: 20%;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
 }
 .form-section {
     width: 100%;
-    border: solid 1px green;
+    /* border: solid 1px green; */
     height: 40%;
     display: flex;
     justify-content: center;
