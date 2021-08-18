@@ -1,12 +1,17 @@
-
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { storeUser } from '../../actions';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { storeUser } from "../../actions";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+import {
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -23,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CreateGame = () => {
-
   const classes = useStyles();
   //States
   const [userName, setUserName] = useState("");
