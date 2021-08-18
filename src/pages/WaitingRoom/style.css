@@ -37,6 +37,7 @@
     height: 80%;
     box-shadow: 0 0 10px 10px rgb(250, 143, 3);
     z-index: 2;
+    border-radius: 30px;
 }
 .waiting-message {
     width: 100%;
