@@ -11,20 +11,21 @@ import { useSelector } from 'react-redux';
 // - Note: Easier way to do this would be to not alert user of whether they answered correctly during the game
 
 const Game = () => {
-  const [score, setScore] = useState(0);
-  const [gameEnded, setGameEnded] = useState(false);
   const questionNumber = useSelector(state => state.gameState.questionNumber);
   const gameQuestions = useSelector(state => state.gameState.questions);
+  const gameUsers = useSelector(state => state.gameState.users);
+
+  const userElements = gameUsers.map(user => <div key={user.name}>
+    <h2>{user.name}</h2>
+    <h3>{user.score}</h3>
+  </div>)
   
-  return gameEnded ? (
-    <div>This is a replacer for scoreboard at end of game. Your score was {score}</div>
-  ) : gameQuestions.length ? (
+  return (
     <div>
        <Question data={gameQuestions[questionNumber-1]}  />
+       {userElements}
     </div>
-  ) : (
-    <h2>Loading...</h2>
-  );
+  )
 };
 
 export default Game;
