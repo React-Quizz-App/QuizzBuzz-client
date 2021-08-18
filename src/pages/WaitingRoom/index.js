@@ -37,8 +37,8 @@ const WaitingRoom = () => {
                     <h1>QUIZZBUZZ</h1>
                 </div>
             </header> */}
-            <div className="waiting-room-outer-container">
-                <div className="waiting-room-inner">
+            <div className="outer-container">
+                <div className="inner-container">
                     <div className="waiting-message">
                         <h1>This is {data.host}'s room </h1>
                         <h2>Please wait for other players...</h2>
@@ -57,7 +57,7 @@ const WaitingRoom = () => {
                                                                                  <span>{data.roomName}</span>
                                                                             </div>
                                                                         </div>
-                                                                        <button onClick={handleButtonClick} className="start-game">START GAME</button>
+                                                                        <button onClick={handleButtonClick} className="btn start-game">START GAME</button>
                                                                     </div> 
                                                                     : 
                                                                     <div className="start-section">

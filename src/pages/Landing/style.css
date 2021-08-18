@@ -1,0 +1,52 @@
+.landing-page {
+    width: 100%;
+    height: 85vh;
+    position: absolute;
+    top: 15vh;
+    background: #1E2240;
+}
+.inner-container{
+    position: relative;
+}
+.landing-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#high-score-btn {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+}
+.btn {
+    height: 35px;
+    width: 20%;
+    margin: 30px;
+}
+.landing-page span {
+    pointer-events: none;
+    animation: animate 5s linear infinite;
+}
+@keyframes animate {
+    0%
+    {
+        transform: scale(0) translateY(0);
+        opacity: 0;
+    }
+    10%
+    {
+        opacity: 1;
+    }
+    90%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: scale(1) translateY(-500%);
+        opacity: 0;
+    }
+}
