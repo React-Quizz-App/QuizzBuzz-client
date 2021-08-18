@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
 const io = require('socket.io-client');
 const ENDPOINT = 'http://localhost:3000';
-import { changeState, storeSocket, addUser } from './actions';
+import { changeState, storeSocket, addUser, updateScore } from './actions';
 
 const App = () => {
   
@@ -21,6 +21,9 @@ const App = () => {
     newSocket.on('change state', (state)=>{
       dispatch(changeState(state));
     });
+    newSocket.on('update opponents score', (user)=>{
+      dispatch(updateScore(user));
+    })
     setSocket(newSocket);
   }, []);
 
