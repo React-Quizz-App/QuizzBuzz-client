@@ -24,7 +24,7 @@
 }
 .start-form-section {
     width: 100%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     margin-top: 20%;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
 }
 .form-section {
     width: 100%;
-    border: solid 1px green;
+    /* border: solid 1px green; */
     height: 40%;
     display: flex;
     justify-content: center;
@@ -66,4 +66,17 @@
         transform: scale(1) translateY(-500%);
         opacity: 0;
     }
+}
+
+
+.create-modal-container{
+    background-color: white;
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 20vh;
+}
+
+.create-input{
+    margin-bottom: 5px;
 }
