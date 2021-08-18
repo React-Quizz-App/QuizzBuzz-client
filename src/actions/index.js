@@ -39,9 +39,10 @@ const incrementQuestionNumber = () => {
     }
 }
 
-const updateScore = () => {
+const updateScore = (user) => {
     return {
-        type: 'UPDATE_SCORE'
+        type: 'UPDATE_SCORE',
+        payload: user
     }
 }
 

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { incrementQuestionNumber, updateScore } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 
 const Question = ({ data: { question, correct_answer, incorrect_answers } }) => {
 
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(30);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
+  const [isGameOver, setIsGameOver] = useState(false);
   const dispatch = useDispatch();
   const gameState = useSelector(state => state.gameState);
   const socket = useSelector(state => state.socket);
@@ -29,43 +31,37 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     if (counter === 0 ){
       if (gameState.questionNumber <= 10){
         dispatch(incrementQuestionNumber());
-        setCounter(10);
+        setCounter(30);
       } else {
         console.log('game over');
+        setIsGameOver(true);
       }
     };
   }, [counter])
 
   function handleChange(event){
     setSelectedOption(event.target.value);
-    console.log(event.target.value);
   }
 
   function handleSubmit(event){
     event.preventDefault();
-    console.log(selectedOption);
     // increment question number by one
     if (gameState.questionNumber !== 10){
       dispatch(incrementQuestionNumber());
-      setCounter(10);
+      setCounter(30);
     } else {
       console.log('game over');
+      setIsGameOver(true);
     }
     // if score is correct update the score
     if (selectedOption === correct_answer && gameState.questionNumber <= 10){
-      dispatch(updateScore());
-      // let newState = {...gameState};
-      // let newUsers = [...gameState.users];
-      // let userIdx = newUsers.findIndex(item => item.name === clientUser);
-      // console.log(userIdx);
-      // newUsers[userIdx].score += 1;
-      // newState.users = newUsers;
-      // console.log(newState);
-      // socket.emit('send state to players', newState);
+      dispatch(updateScore(clientUser));
+      socket.emit('update player score', {room: gameState.roomName, user: clientUser})
     };
 
   }
   return (
+    <>
     <div>
       <div>
         <h2>{question}</h2>
@@ -83,6 +79,8 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
         </form>
       </div>
     </div>
+    { isGameOver && <Redirect to='/game-over' />}
+    </>
   );
 };
 
