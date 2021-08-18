@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { HighScores } from "../../pages";
 import { CreateGame, JoinGame } from "../../components";
 import "./style.css";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 
 const Landing = () => {
   function createCircle() {
