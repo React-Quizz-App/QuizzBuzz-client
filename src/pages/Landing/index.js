@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
-import { HighScores } from "../../pages";
-import { CreateGame, JoinGame } from "../../components";
-import { Modal } from "@material-ui/core";
-import "./style.css";
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
+import { HighScores } from '../../pages';
+import { Redirect } from 'react-router-dom';
+import { CreateGame, JoinGame } from '../../components';
+import { Modal } from '@material-ui/core';
+import './style.css';
 
 const Landing = () => {
   const circleRef = useRef();
@@ -11,21 +12,21 @@ const Landing = () => {
   useEffect(() => {
     function createCircle() {
       if (circleRef.current === undefined) return;
-      const colors = ["rgb(250, 143, 3, 0.8)"];
+      const colors = ['rgb(250, 143, 3, 0.8)'];
       const bg = colors[Math.floor(Math.random() * colors.length)];
       const section = circleRef.current;
       // console.log(section)
-      const circle = document.createElement("span");
+      const circle = document.createElement('span');
       // console.log(circle)
       const size = Math.floor(Math.random() * 50) + 20;
       circle.style.width = `${size}px`;
       circle.style.height = `${size}px`;
-      circle.style.position = "absolute";
-      circle.style.bottom = Math.random() * innerHeight + "px";
-      circle.style.right = Math.random() * innerWidth + "px";
-      circle.style.borderRadius = "100%";
+      circle.style.position = 'absolute';
+      circle.style.bottom = Math.random() * innerHeight + 'px';
+      circle.style.right = Math.random() * innerWidth + 'px';
+      circle.style.borderRadius = '100%';
       circle.style.background = bg;
-      circle.style.zIndex = "1";
+      circle.style.zIndex = '1';
       section.appendChild(circle);
       setTimeout(() => {
         circle.remove();
@@ -62,11 +63,7 @@ const Landing = () => {
     <div ref={circleRef} className="landing-page">
       <div className="outer-container">
         <div className="inner-container">
-          <button
-            onClick={toggleHighscores}
-            id="high-score-btn"
-            className="btn"
-          >
+          <button onClick={toggleHighscores} id="high-score-btn" className="btn">
             Highscores
           </button>
           <div className="landing-container">
@@ -78,8 +75,7 @@ const Landing = () => {
                 Join Game
               </button>
             </div>
-            {isHighscoresShown && <HighScores />}{" "}
-            {/* should redirect to another page */}
+            {isHighscoresShown && <Redirect to="/highscores" />}
             <Modal open={createOpen} onClose={handleCreateClose}>
               <div className="create-modal-container">
                 <CreateGame />
