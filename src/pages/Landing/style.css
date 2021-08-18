@@ -67,3 +67,16 @@
         opacity: 0;
     }
 }
+
+
+.create-modal-container{
+    background-color: white;
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 20vh;
+}
+
+.create-input{
+    margin-bottom: 5px;
+}
