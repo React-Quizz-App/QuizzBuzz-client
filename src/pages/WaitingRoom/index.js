@@ -6,21 +6,21 @@ import './style.css';
 
 const WaitingRoom = () => {
 
-    // const data = useSelector(state => state.gameState);
-    // const user = useSelector(state => state.user);
-    // const socket = useSelector(state => state.socket);
-    // const dispatch = useDispatch()
+    const data = useSelector(state => state.gameState);
+    const user = useSelector(state => state.user);
+    const socket = useSelector(state => state.socket);
+    const dispatch = useDispatch()
 
-    const data = {
-        roomName: "afkewb",
-        cataegory: "Entertainment",
-        difficulty: "hard",
-        host: "Akash",
-        users: [
-            {name: "Tom", score: 0}, {name: "Jawwad", score:0}, {name:"Rafika", score:0}
-        ],
-    }
-    const user = "Akash"
+    // const data = {
+    //     roomName: "afkewb",
+    //     cataegory: "Entertainment",
+    //     difficulty: "hard",
+    //     host: "Akash",
+    //     users: [
+    //         {name: "Tom", score: 0}, {name: "Jawwad", score:0}, {name:"Rafika", score:0}
+    //     ],
+    // }
+    // const user = "Akash"
     function handleButtonClick(){
         dispatch(startGame());
         let newState = {
