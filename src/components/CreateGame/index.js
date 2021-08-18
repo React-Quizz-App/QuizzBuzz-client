@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { storeUser } from "../../actions";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 
 const CreateGame = () => {
   //States
