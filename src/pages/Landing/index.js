@@ -29,7 +29,7 @@ const Landing = () => {
           circle.remove()
       }, 5000)
   }
-      const stream = setInterval(createCircle, 300) 
+      // const stream = setInterval(createCircle, 300) 
       return ()=>clearInterval(stream);
   }, [])
 
@@ -40,8 +40,8 @@ const Landing = () => {
   const [createOpen, setCreateOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
 
-  const toggleForm = () => setIsFormShown((prev) => !prev);
-  const toggleJoinForm = () => setIsJoinFormShown((prev) => !prev);
+  // const toggleForm = () => setIsFormShown((prev) => !prev);
+  // const toggleJoinForm = () => setIsJoinFormShown((prev) => !prev);
   const toggleHighscores = () => setIsHighscoresShown((prev) => !prev);
 
   function handleCreateOpen(){
@@ -72,21 +72,21 @@ const Landing = () => {
             </div>
             {isHighscoresShown && <HighScores />}   {/* should redirect to another page */}
             <Modal open={createOpen} onClose={handleCreateClose}>
-              <div>
+              <div className='create-modal-container'>
                 <CreateGame />
               </div>
             </Modal>
 
             <Modal open={joinOpen} onClose={handleJoinClose}>
-              <div>
+              <div className='create-modal-container'>
                 <JoinGame />
               </div>
             </Modal>
 
-            <div className="form-section">
+            {/* <div className="form-section">
               {isFormShown && <CreateGame />}
               {isJoinFormShown && <JoinGame />}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

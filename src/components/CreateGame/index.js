@@ -3,8 +3,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { storeUser } from '../../actions';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const CreateGame = () => {
+
+  const classes = useStyles();
   //States
   const [userName, setUserName] = useState('');
   const [category, setCategory] = useState('');
@@ -72,7 +87,7 @@ const CreateGame = () => {
   return (
     <>
     <form onSubmit={handleFormSubmit}>
-      <input
+      {/* <input
         type="text"
         id="username"
         name="userName"
@@ -82,8 +97,25 @@ const CreateGame = () => {
         value={userName}
         required
         onChange={handleUserName}
-      />
-      <select name="Category" id="category" onChange={handleCategory} required>
+      /> */}
+      <div className='create-input'>
+      <TextField label='Username' onChange={handleUserName} value={userName}/>
+      </div>
+      <div className='create-input'>
+        <FormControl className={classes.formControl}>
+          <InputLabel >Category</InputLabel>
+          <Select value={category} onChange={handleCategory}>
+            <MenuItem value="placeholder">Category</MenuItem>
+            <MenuItem value="General Knowledge">General Knowledge</MenuItem>
+            <MenuItem value="Entertainment: Books">Entertainment: Books</MenuItem>
+            <MenuItem value="Entertainment: Film">Entertainment: Film</MenuItem>
+            <MenuItem value="Entertainment: Music">Entertainment: Music</MenuItem>
+            <MenuItem value="Sports">Sports</MenuItem>
+            <MenuItem value="Science: Computers">Science: Computers</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      {/* <select name="Category" id="category" onChange={handleCategory} required>
         <option value="placeholder">Category</option>
         <option value="General Knowledge">General Knowledge</option>
         <option value="Entertainment: Books">Entertainment: Books</option>
@@ -97,8 +129,11 @@ const CreateGame = () => {
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
-      </select>
-      <input type="submit" value="Create A Game" />
+      </select> */}
+      <div className='create-input'>
+      <Button type="submit" variant="outlined" color="primary">Submit</Button>
+      </div>
+      {/* <input type="submit" value="Create A Game" /> */}
     </form>
     {isFormSubmitted && <Redirect to='/waiting-room'/>}
     </>
