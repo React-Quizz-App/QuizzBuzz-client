@@ -1,7 +1,25 @@
 #highscores {
-  padding-top: 200px;
+  padding-top: 210px;
+  text-align: center;
 }
 
 /* form {
   padding-top: 20px;
+} */
+
+/* Below will actually change to be a table */
+
+/* .rank {
+  margin-left: 25vw;
+  display: inline;
+}
+
+.userName {
+  margin-left: 50vw;
+  display: inline;
+}
+
+.userScore {
+  margin-right: 75vw;
+  display: inline;
 } */

@@ -3,9 +3,6 @@ import axios from 'axios';
 import './style.css';
 import { render } from 'react-dom';
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
 const HighScores = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('');
@@ -28,25 +25,6 @@ const HighScores = () => {
     if (filteredHighScores.length) {
       //   console.log(filteredHighScores);
       const arr = filteredHighScores.map((sortedScore, index) => {
-  useEffect(() => {
-    async function fetchHighScores() {
-      try {
-        let { data } = await axios.get("http://localhost:3000/highscores");
-        setHighscores(data);
-      } catch (err) {
-        console.warn(err);
-      }
-    }
-    fetchHighScores();
-  }, []);
-
-  const sortHighscores = () => {
-    if (highscores) {
-      const rankedHighscores = highscores.sort(
-        (a, b) => Number(b.score) - Number(a.score)
-      );
-      console.log(rankedHighscores);
-      const arr = rankedHighscores.map((sortedScore, index) => {
         let rank = index + 1;
         let id = sortedScore._id;
         let username = sortedScore.name;
@@ -58,16 +36,14 @@ const HighScores = () => {
     }
   };
 
-  //   console.log(sortHighscores());
-
   let saveSortedHighScores = filteredHighScores.length ? sortHighscores() : [];
   //   console.log(saveSortedHighScores);
 
   let renderHighscores = saveSortedHighScores.map((s, i) => (
     <div key={i}>
-      <p>{s.rank}</p>
-      <p>{s.username}</p>
-      <p>{s.score}</p>
+      <p className="rank">{s.rank}</p>
+      <p className="userName">{s.username}</p>
+      <p className="userScore">{s.score}</p>
     </div>
   ));
 
@@ -86,33 +62,25 @@ const HighScores = () => {
 
   return (
     <div id="highscores">
-      {isFilterSelected ? (
-        renderHighscores
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
-            <option value="placeholder">By Category</option>
-            <option value="General Knowledge">General Knowledge</option>
-            <option value="Entertainment: Books">Entertainment: Books</option>
-            <option value="Entertainment: Film">Entertainment: Film</option>
-            <option value="Entertainment: Music">Entertainment: Music</option>
-            <option value="sports">Sports</option>
-            <option value="Science: Computers">Science: Computers</option>
-          </select>
-          <select name="Difficulty" id="difficulty-filter" onChange={handleDifficultyFilter} required>
-            <option value="placeholder-for-difficulty">Difficulty</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-          <input type="submit" value="Filter Results" />
-        </form>
-      )}
-    <div>
-      <h2>HighScores</h2>
-      {highscores ? renderHighscores : ""}
-      <button onClick={toggleHighscoreFilter}>Filter</button>
-      {/* {isFilterSelected && newComponent} */}
+      <form onSubmit={handleSubmit}>
+        <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
+          <option value="placeholder">By Category</option>
+          <option value="General Knowledge">General Knowledge</option>
+          <option value="Entertainment: Books">Entertainment: Books</option>
+          <option value="gaming">Entertainment: Film</option>
+          <option value="Entertainment: Music">Entertainment: Music</option>
+          <option value="sports">Sports</option>
+          <option value="Science: Computers">Science: Computers</option>
+        </select>
+        <select name="Difficulty" id="difficulty-filter" onChange={handleDifficultyFilter} required>
+          <option value="placeholder-for-difficulty">Difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <input type="submit" value="Filter Results" />
+      </form>
+      {isFilterSelected ? renderHighscores : <p></p>}
     </div>
   );
 };
