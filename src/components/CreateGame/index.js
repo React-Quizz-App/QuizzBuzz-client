@@ -18,9 +18,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
+  button: {
+    marginLeft: theme.spacing(5)
+  }
 }));
 
 const CreateGame = () => {
@@ -90,45 +94,41 @@ const CreateGame = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleFormSubmit}>
-        <div className="create-input">
-          <TextField
-            label="Username"
-            onChange={handleUserName}
-            value={userName}
-          />
-        </div>
-        <div className="create-input">
-          <FormControl className={classes.formControl}>
-            <InputLabel>Category</InputLabel>
-            <Select value={category} onChange={handleCategory}>
-              <MenuItem value="placeholder">Category</MenuItem>
-              <MenuItem value="General Knowledge">General Knowledge</MenuItem>
-              <MenuItem value="Entertainment: Books">
-                Entertainment: Books
-              </MenuItem>
-              <MenuItem value="Entertainment: Film">
-                Entertainment: Film
-              </MenuItem>
-              <MenuItem value="Entertainment: Music">
-                Entertainment: Music
-              </MenuItem>
-              <MenuItem value="Sports">Sports</MenuItem>
-              <MenuItem value="Science: Computers">Science: Computers</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-
-        <div className="create-input">
-          <Button type="submit" variant="outlined" color="primary">
-            Submit
-          </Button>
-        </div>
-        {/* <input type="submit" value="Create A Game" /> */}
-      </form>
-      {isFormSubmitted && <Redirect to="/waiting-room" />}
-    </>
+    <div className='create-form-container'>
+    <form onSubmit={handleFormSubmit}>
+      <div className='create-input'>
+      <TextField label='Username' onChange={handleUserName} value={userName} className={classes.textField}/>
+      </div>
+      <div className='create-input'>
+        <FormControl className={classes.formControl}>
+          <InputLabel >Category</InputLabel>
+          <Select value={category} onChange={handleCategory}>
+            <MenuItem value="General Knowledge">General Knowledge</MenuItem>
+            <MenuItem value="Entertainment: Books">Entertainment: Books</MenuItem>
+            <MenuItem value="Entertainment: Film">Entertainment: Film</MenuItem>
+            <MenuItem value="Entertainment: Music">Entertainment: Music</MenuItem>
+            <MenuItem value="Sports">Sports</MenuItem>
+            <MenuItem value="Science: Computers">Science: Computers</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      <div className='create-input'>
+        <FormControl className={classes.formControl}>
+          <InputLabel >Difficulty</InputLabel>
+          <Select value={difficulty} onChange={handleDifficulty}>
+            <MenuItem value="easy">Easy</MenuItem>
+            <MenuItem value="medium">Medium</MenuItem>
+            <MenuItem value="hard">Hard</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      
+      <div className='create-input'>
+      <Button className={classes.button} type="submit" variant="outlined" color="primary">Create Game</Button>
+      </div>
+    </form>
+    {isFormSubmitted && <Redirect to='/waiting-room'/>}
+    </div>
   );
 };
 
