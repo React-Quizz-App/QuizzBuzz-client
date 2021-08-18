@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { incrementQuestionNumber, updateScore } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import he from 'he';
+import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
 
 
 const Question = ({ data: { question, correct_answer, incorrect_answers } }) => {
@@ -35,6 +37,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       } else {
         console.log('game over');
         setIsGameOver(true);
+    
       }
     };
   }, [counter])
@@ -46,7 +49,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
   function handleSubmit(event){
     event.preventDefault();
     // increment question number by one
-    if (gameState.questionNumber !== 10){
+    if (gameState.questionNumber <= 10){
       dispatch(incrementQuestionNumber());
       setCounter(30);
     } else {
@@ -55,27 +58,33 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     }
     // if score is correct update the score
     if (selectedOption === correct_answer && gameState.questionNumber <= 10){
-      dispatch(updateScore(clientUser));
-      socket.emit('update player score', {room: gameState.roomName, user: clientUser})
+      let score = 100 + (2*counter);
+      dispatch(updateScore(clientUser, score));
+      socket.emit('update player score', {room: gameState.roomName, user: clientUser, score})
     };
-
   }
+  
+  const answerElements = shuffledAnswers.map((answer) => (
+    <FormControlLabel key={answer} value={answer} control={<Radio />} label={he.decode(answer)} />
+  ));
+
+
   return (
     <>
     <div>
       <div>
-        <h2>{question}</h2>
+        <h2>{he.decode(question)}</h2>
       </div>
       <p>{counter}</p>
       <div>
         <form onSubmit={handleSubmit}>
-        {shuffledAnswers.map((answer) => (
-          <div key = {answer}>
-          <input onChange = {handleChange} type="radio" id={answer} name="answer" value={answer} checked={selectedOption === answer}/>
-          <label htmlFor={answer}>{answer}</label>
-          </div>
-        ))}
-        <input type='submit' value='Submit'></input>
+        <FormControl component='fieldset'>
+          <FormLabel component='legend'>Select an answer:</FormLabel>
+          <RadioGroup aria-label="gender" name="gender1" value={selectedOption} onChange={handleChange} >
+            {answerElements}
+          </RadioGroup>
+          <Button type="submit" variant="outlined" color="primary">Submit</Button>
+        </FormControl>
         </form>
       </div>
     </div>

@@ -58,7 +58,7 @@ const Landing = () => {
             {isHighscoresShown && <HighScores />}{" "}
             {/* should redirect to another page */}
             <div className="form-section">
-              {isFormShown && <CreateGame />}
+              {isFormShown && <Create Game />}
               {isJoinFormShown && <JoinGame />}
             </div>
           </div>
