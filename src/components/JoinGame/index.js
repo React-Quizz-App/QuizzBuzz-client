@@ -47,21 +47,6 @@ const JoinGame = () => {
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        {/* <label htmlFor="username"></label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Please enter a username"
-        onChange={handleUsername}
-      />
-      <input
-        type="text"
-        id="quizCode"
-        name="quizCode"
-        placeholder="Please enter the Code for the Quiz you would like to join."
-        onChange={handleQuizCode}
-      /> */}
         <div className="create-input">
           <TextField
             label="Username"

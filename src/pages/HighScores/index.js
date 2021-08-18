@@ -3,6 +3,9 @@ import axios from 'axios';
 import './style.css';
 import { render } from 'react-dom';
 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 const HighScores = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('');
@@ -25,6 +28,25 @@ const HighScores = () => {
     if (filteredHighScores.length) {
       //   console.log(filteredHighScores);
       const arr = filteredHighScores.map((sortedScore, index) => {
+  useEffect(() => {
+    async function fetchHighScores() {
+      try {
+        let { data } = await axios.get("http://localhost:3000/highscores");
+        setHighscores(data);
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+    fetchHighScores();
+  }, []);
+
+  const sortHighscores = () => {
+    if (highscores) {
+      const rankedHighscores = highscores.sort(
+        (a, b) => Number(b.score) - Number(a.score)
+      );
+      console.log(rankedHighscores);
+      const arr = rankedHighscores.map((sortedScore, index) => {
         let rank = index + 1;
         let id = sortedScore._id;
         let username = sortedScore.name;
@@ -86,6 +108,11 @@ const HighScores = () => {
           <input type="submit" value="Filter Results" />
         </form>
       )}
+    <div>
+      <h2>HighScores</h2>
+      {highscores ? renderHighscores : ""}
+      <button onClick={toggleHighscoreFilter}>Filter</button>
+      {/* {isFilterSelected && newComponent} */}
     </div>
   );
 };
