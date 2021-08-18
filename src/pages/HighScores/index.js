@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const HighScores = () => {
   const [highscores, setHighscores] = useState();
@@ -10,7 +10,7 @@ const HighScores = () => {
   useEffect(() => {
     async function fetchHighScores() {
       try {
-        let { data } = await axios.get('http://localhost:3000/highscores');
+        let { data } = await axios.get("http://localhost:3000/highscores");
         setHighscores(data);
       } catch (err) {
         console.warn(err);
@@ -21,7 +21,9 @@ const HighScores = () => {
 
   const sortHighscores = () => {
     if (highscores) {
-      const rankedHighscores = highscores.sort((a, b) => Number(b.score) - Number(a.score));
+      const rankedHighscores = highscores.sort(
+        (a, b) => Number(b.score) - Number(a.score)
+      );
       console.log(rankedHighscores);
       const arr = rankedHighscores.map((sortedScore, index) => {
         let rank = index + 1;
@@ -48,8 +50,8 @@ const HighScores = () => {
   return (
     <div>
       <h2>HighScores</h2>
-      {highscores ? renderHighscores : ''}
-      <button onClick={isFitoggleHighscoreFilterlterSelected}>Filter</button>
+      {highscores ? renderHighscores : ""}
+      <button onClick={toggleHighscoreFilter}>Filter</button>
       {/* {isFilterSelected && newComponent} */}
     </div>
   );

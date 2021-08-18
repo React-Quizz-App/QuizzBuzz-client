@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import axios from "axios";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import "./style.css";
 
 const EndGame = () => {
   const [isScoreSubmitted, setIsScoreSubmitted] = useState(false);
@@ -42,13 +43,13 @@ const EndGame = () => {
     setIsScoreSubmitted(true);
   };
   return (
-    <>
+    <div className="scores-container">
       {playerCards}
       {haveAllUsersFinished && isHost && (
         <Button onClick={handleScores}>Update Leaderboard!</Button>
       )}
       {isScoreSubmitted && <Redirect to="/highscores" />}
-    </>
+    </div>
   );
 };
 

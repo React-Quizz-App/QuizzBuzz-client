@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Landing, WaitingRoom, Game, HighScores } from "./pages";
+import { Landing, WaitingRoom, Game, HighScores, EndGame } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 const io = require("socket.io-client");
@@ -67,7 +67,7 @@ const App = () => {
         <HighScores />
       </Route>
       <Route path="/game-over">
-        <HighScores />
+        <EndGame />
       </Route>
     </Switch>
   );
