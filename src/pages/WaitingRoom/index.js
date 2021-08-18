@@ -11,6 +11,16 @@ const WaitingRoom = () => {
     const socket = useSelector(state => state.socket);
     const dispatch = useDispatch()
 
+    // const data = {
+    //     roomName: "afkewb",
+    //     cataegory: "Entertainment",
+    //     difficulty: "hard",
+    //     host: "Akash",
+    //     users: [
+    //         {name: "Tom", score: 0}, {name: "Jawwad", score:0}, {name:"Rafika", score:0}
+    //     ],
+    // }
+    // const user = "Akash"
     function handleButtonClick(){
         dispatch(startGame());
         let newState = {
@@ -22,13 +32,13 @@ const WaitingRoom = () => {
     return (
         <> 
         {data.users && <div className="waiting-room-page">
-            <header>
+            {/* <header>
                 <div>
                     <h1>QUIZZBUZZ</h1>
                 </div>
-            </header>
-            <div className="waiting-room-outer-container">
-                <div className="waiting-room-inner">
+            </header> */}
+            <div className="outer-container">
+                <div className="inner-container">
                     <div className="waiting-message">
                         <h1>This is {data.host}'s room </h1>
                         <h2>Please wait for other players...</h2>
@@ -47,7 +57,7 @@ const WaitingRoom = () => {
                                                                                  <span>{data.roomName}</span>
                                                                             </div>
                                                                         </div>
-                                                                        <button onClick={handleButtonClick} className="start-game">START GAME</button>
+                                                                        <button onClick={handleButtonClick} className="btn start-game">START GAME</button>
                                                                     </div> 
                                                                     : 
                                                                     <div className="start-section">

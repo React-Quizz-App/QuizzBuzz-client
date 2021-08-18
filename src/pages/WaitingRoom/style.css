@@ -1,40 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Quicksand&family=Lato&display=swap');
-* {
+/* @import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Quicksand&family=Lato&display=swap'); */
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 .waiting-room-page {
     width: 100%;
-    height: 100vh;
+    height: 85vh;
+    position: absolute;
+    top:15vh;
     background: #1E2240;
     color: white;
     font-family: 'Lato', sans-serif;
 }
-.waiting-room-page header h1 {
+/* .waiting-room-page header h1 {
     font-family: 'Palette Mosaic', cursive;
     font-size: 50px;
-}
-header {
+} */
+/* header {
     width: 100%;
     height: 15%;
     background: #3c4e76;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.waiting-room-outer-container {
+} */
+.outer-container {
     width: 100%;
-    height: 85%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
-.waiting-room-inner {
+.inner-container {
     width: 60%;
     height: 80%;
     box-shadow: 0 0 10px 10px rgb(250, 143, 3);
+    z-index: 2;
 }
 .waiting-message {
     width: 100%;
@@ -82,7 +84,7 @@ header {
     display: flex;
     align-items: center;
 }
-.start-game {
+.btn {
     text-decoration: none;
     color: black;
     font-weight: bold;
@@ -92,11 +94,13 @@ header {
     border: none;
     padding: 10px 30px;
     background-color: rgb(255, 255, 255);
-    position: absolute;
-    right: 5%;
     transition: ease-in-out 0.1s;
 }
-.start-game:hover {
+.start-game {
+    position: absolute;
+    right: 5%;
+}
+.btn:hover {
     background: orange;
 }
 .game-link {
