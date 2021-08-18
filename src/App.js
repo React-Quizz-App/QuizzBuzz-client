@@ -20,8 +20,8 @@ const App = () => {
     newSocket.on('change state', (state) => {
       dispatch(changeState(state));
     });
-    newSocket.on('update opponents score', (user)=>{
-      dispatch(updateScore(user));
+    newSocket.on('update opponents score', ({user, score})=>{
+      dispatch(updateScore(user, score));
     })
     setSocket(newSocket);
   }, []);

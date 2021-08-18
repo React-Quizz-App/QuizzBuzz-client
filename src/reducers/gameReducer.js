@@ -44,8 +44,8 @@ const gameReducer = (state=initState, action) => {
         case 'UPDATE_SCORE':
             // let clientUser = state.user;
             let newUsers = [...state.gameState.users];
-            let userIdx = newUsers.findIndex(item => item.name === action.payload);
-            newUsers[userIdx].score += 1;
+            let userIdx = newUsers.findIndex(item => item.name === action.user);
+            newUsers[userIdx].score += action.score;
             return {
                 ...state,
                 gameState: {...state.gameState, users: newUsers}

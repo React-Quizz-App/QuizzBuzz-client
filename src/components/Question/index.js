@@ -55,8 +55,9 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     }
     // if score is correct update the score
     if (selectedOption === correct_answer && gameState.questionNumber <= 10){
-      dispatch(updateScore(clientUser));
-      socket.emit('update player score', {room: gameState.roomName, user: clientUser})
+      let score = 100 + (2*counter);
+      dispatch(updateScore(clientUser, score));
+      socket.emit('update player score', {room: gameState.roomName, user: clientUser, score})
     };
 
   }
