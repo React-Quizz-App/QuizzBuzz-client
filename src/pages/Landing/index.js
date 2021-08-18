@@ -125,10 +125,10 @@ const Landing = () => {
             </div>
             {isHighscoresShown && <HighScores />}{" "}
             {/* should redirect to another page */}
-            <div className="form-section">
+            {/* <div className="form-section">
               {isFormShown && <CreateGame />}
               {isJoinFormShown && <JoinGame />}
-            </div> */}
+            </div>  */}
           </div>
         </div>
       </div>
