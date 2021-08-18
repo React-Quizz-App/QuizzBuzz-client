@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Landing, WaitingRoom, Game, HighScores } from './pages';
-import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-const io = require('socket.io-client');
-const ENDPOINT = 'http://localhost:3000';
-import { changeState, storeSocket, addUser, updateScore, setQuizAsComplete } from './actions';
+import React, { useEffect, useState } from "react";
+import { Landing, WaitingRoom, Game, HighScores } from "./pages";
+import { useDispatch, useSelector } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+const io = require("socket.io-client");
+const ENDPOINT = "http://localhost:3000";
+import {
+  changeState,
+  storeSocket,
+  addUser,
+  updateScore,
+  setQuizAsComplete,
+} from "./actions";
 
 const App = () => {
   const [socket, setSocket] = useState();
@@ -16,13 +22,13 @@ const App = () => {
   // initialise a socket and events to listen for
   useEffect(() => {
     const newSocket = io(ENDPOINT);
-    newSocket.on('change state', (state) => {
+    newSocket.on("change state", (state) => {
       dispatch(changeState(state));
     });
-    newSocket.on('update opponents score', ({user, score})=>{
+    newSocket.on("update opponents score", ({ user, score }) => {
       dispatch(updateScore(user, score));
     });
-    newSocket.on('update opponent completion', user => {
+    newSocket.on("update opponent completion", (user) => {
       dispatch(setQuizAsComplete(user));
     });
     dispatch(storeSocket(newSocket));
@@ -31,12 +37,16 @@ const App = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on('user joining waiting room', (user) => {
+      socket.on("user joining waiting room", (user) => {
         if (clientUser === host) {
           dispatch(addUser(user));
           let newGameState = { ...gameState };
-          newGameState.users.push({ name: user, score: 0, hasCompletedQuiz: false });
-          socket.emit('send state to players', newGameState);
+          newGameState.users.push({
+            name: user,
+            score: 0,
+            hasCompletedQuiz: false,
+          });
+          socket.emit("send state to players", newGameState);
         }
       });
     }
@@ -54,6 +64,9 @@ const App = () => {
         <Game />
       </Route>
       <Route path="/highscores">
+        <HighScores />
+      </Route>
+      <Route path="/game-over">
         <HighScores />
       </Route>
     </Switch>
