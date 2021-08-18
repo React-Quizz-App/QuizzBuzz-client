@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { HighScores } from '../../pages';
 import { CreateGame, JoinGame } from '../../components';
+import './style.css';
 
 const Landing = () => {
   const [isFormShown, setIsFormShown] = useState(false);
