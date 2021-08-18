@@ -3,6 +3,7 @@ import { incrementQuestionNumber, updateScore } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import he from 'he';
+import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
 
 
 const Question = ({ data: { question, correct_answer, incorrect_answers } }) => {
@@ -60,8 +61,13 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       dispatch(updateScore(clientUser, score));
       socket.emit('update player score', {room: gameState.roomName, user: clientUser, score})
     };
-
   }
+  
+  const answerElements = shuffledAnswers.map((answer) => (
+    <FormControlLabel key={answer} value={answer} control={<Radio />} label={he.decode(answer)} />
+  ));
+
+
   return (
     <>
     <div>
@@ -71,13 +77,13 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       <p>{counter}</p>
       <div>
         <form onSubmit={handleSubmit}>
-        {shuffledAnswers.map((answer) => (
-          <div key = {answer}>
-          <input onChange = {handleChange} type="radio" id={answer} name="answer" value={answer} checked={selectedOption === answer}/>
-          <label htmlFor={answer}>{he.decode(answer)}</label>
-          </div>
-        ))}
-        <input type='submit' value='Submit'></input>
+        <FormControl component='fieldset'>
+          <FormLabel component='legend'>Select an answer:</FormLabel>
+          <RadioGroup aria-label="gender" name="gender1" value={selectedOption} onChange={handleChange} >
+            {answerElements}
+          </RadioGroup>
+          <Button type="submit" variant="outlined" color="primary">Submit</Button>
+        </FormControl>
         </form>
       </div>
     </div>
@@ -87,3 +93,13 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
 };
 
 export default Question;
+
+{/* <FormControl component="fieldset">
+  <FormLabel component="legend">Gender</FormLabel>
+  <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+    <FormControlLabel value="female" control={<Radio />} label="Female" />
+    <FormControlLabel value="male" control={<Radio />} label="Male" />
+    <FormControlLabel value="other" control={<Radio />} label="Other" />
+    <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+  </RadioGroup>
+</FormControl> */}
