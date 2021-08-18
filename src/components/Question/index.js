@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { incrementQuestionNumber, updateScore } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import he from 'he';
 
 
 const Question = ({ data: { question, correct_answer, incorrect_answers } }) => {
@@ -65,7 +66,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     <>
     <div>
       <div>
-        <h2>{question}</h2>
+        <h2>{he.decode(question)}</h2>
       </div>
       <p>{counter}</p>
       <div>
@@ -73,7 +74,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
         {shuffledAnswers.map((answer) => (
           <div key = {answer}>
           <input onChange = {handleChange} type="radio" id={answer} name="answer" value={answer} checked={selectedOption === answer}/>
-          <label htmlFor={answer}>{answer}</label>
+          <label htmlFor={answer}>{he.decode(answer)}</label>
           </div>
         ))}
         <input type='submit' value='Submit'></input>
