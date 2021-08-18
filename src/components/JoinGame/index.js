@@ -3,14 +3,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { storeUser } from "../../actions";
-import {
-  TextField,
-  Button,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const JoinGame = () => {
@@ -45,23 +38,8 @@ const JoinGame = () => {
   };
 
   return (
-    <>
+    <div className='create-form-container'>
       <form onSubmit={handleFormSubmit}>
-        {/* <label htmlFor="username"></label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Please enter a username"
-        onChange={handleUsername}
-      />
-      <input
-        type="text"
-        id="quizCode"
-        name="quizCode"
-        placeholder="Please enter the Code for the Quiz you would like to join."
-        onChange={handleQuizCode}
-      /> */}
         <div className="create-input">
           <TextField
             label="Username"
@@ -79,12 +57,12 @@ const JoinGame = () => {
         </div>
         <div className="create-input">
           <Button type="submit" variant="outlined" color="primary">
-            Submit
+            Join Game
           </Button>
         </div>
       </form>
       {isFormSubmitted && <Redirect to="waiting-room" />}
-    </>
+    </div>
   );
 };
 
