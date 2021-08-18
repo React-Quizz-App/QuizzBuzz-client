@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { render } from 'react-dom';
 
 const HighScores = () => {
-  const [highscores, setHighscores] = useState();
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [difficultyFilter, setDifficultyFilter] = useState('');
+  const [filteredHighScores, setFilteredHighScores] = useState([]);
   const [isFilterSelected, setIsFilterSelected] = useState(false);
 
+  const handleCategoryFilter = (e) => setCategoryFilter(e.target.value);
+  const handleDifficultyFilter = (e) => setDifficultyFilter(e.target.value);
   const toggleHighscoreFilter = () => setIsFilterSelected((prev) => !prev);
 
-  useEffect(() => {
-    async function fetchHighScores() {
-      try {
-        let { data } = await axios.get('http://localhost:3000/highscores');
-        setHighscores(data);
-      } catch (err) {
-        console.warn(err);
-      }
-    }
-    fetchHighScores();
-  }, []);
+  async function fetchFilteredHighScores() {
+    let { data } = await axios.get(`http://localhost:3000/highscores/${categoryFilter}/${difficultyFilter}`);
+    console.log(data);
+    setFilteredHighScores(data);
+  }
+
+  console.log(filteredHighScores);
 
   const sortHighscores = () => {
-    if (highscores) {
-      const rankedHighscores = highscores.sort((a, b) => Number(b.score) - Number(a.score));
-      console.log(rankedHighscores);
-      const arr = rankedHighscores.map((sortedScore, index) => {
+    if (filteredHighScores.length) {
+      console.log(filteredHighScores);
+      const arr = filteredHighScores.map((sortedScore, index) => {
         let rank = index + 1;
         let id = sortedScore._id;
         let username = sortedScore.name;
@@ -35,8 +35,12 @@ const HighScores = () => {
     }
   };
 
-  let saveSortedHighScores = highscores ? sortHighscores() : [];
+  //   console.log(sortHighscores());
+
+  let saveSortedHighScores = filteredHighScores.length ? sortHighscores() : [];
   console.log(saveSortedHighScores);
+  //Cannot happen until fetch is called as filteredHighscores empty until then
+
   let renderHighscores = saveSortedHighScores.map((s, i) => (
     <div key={i}>
       <p>{s.rank}</p>
@@ -45,12 +49,45 @@ const HighScores = () => {
     </div>
   ));
 
+  console.log(categoryFilter, difficultyFilter);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let rafCode = await fetchFilteredHighScores();
+    //ISSUE IS HERE
+    console.log(rafCode);
+    toggleHighscoreFilter();
+    setCategoryFilter('');
+    setDifficultyFilter('');
+  };
+
+  console.log(isFilterSelected);
+
   return (
     <div>
-      <h2>HighScores</h2>
-      {highscores ? renderHighscores : ''}
-      <button onClick={isFitoggleHighscoreFilterlterSelected}>Filter</button>
-      {/* {isFilterSelected && newComponent} */}
+      {isFilterSelected ? (
+        renderHighscores
+      ) : (
+        // <h2>CHECKING</h2>
+        <form onSubmit={handleSubmit}>
+          <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
+            <option value="placeholder">By Category</option>
+            <option value="General Knowledge">General Knowledge</option>
+            <option value="Entertainment: Books">Entertainment: Books</option>
+            <option value="Entertainment: Film">Entertainment: Film</option>
+            <option value="Entertainment: Music">Entertainment: Music</option>
+            <option value="sports">Sports</option>
+            <option value="Science: Computers">Science: Computers</option>
+          </select>
+          <select name="Difficulty" id="difficulty-filter" onChange={handleDifficultyFilter} required>
+            <option value="placeholder-for-difficulty">Difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <input type="submit" value="Filter Results" />
+        </form>
+      )}
     </div>
   );
 };
