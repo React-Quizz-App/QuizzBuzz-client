@@ -36,8 +36,6 @@ const HighScores = () => {
     }
   };
 
-  //   console.log(sortHighscores());
-
   let saveSortedHighScores = filteredHighScores.length ? sortHighscores() : [];
   //   console.log(saveSortedHighScores);
 
