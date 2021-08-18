@@ -29,14 +29,6 @@ const Landing = () => {
 
 // setInterval(createCircle, 150) 
 
-
-
-
-
-
-
-
-
   const [isFormShown, setIsFormShown] = useState(false);
   const [isJoinFormShown, setIsJoinFormShown] = useState(false);
   const [isHighscoresShown, setIsHighscoresShown] = useState(false); //this is an intermediate solution, should use NavLink
@@ -50,11 +42,16 @@ const Landing = () => {
         <div className="inner-container">
             <button onClick={toggleHighscores} id="high-score-btn" className="btn">Highscores</button>
           <div className="landing-container">
-            <button onClick={toggleForm} className="btn">Create Game</button>
-            <button onClick={toggleJoinForm} className="btn">Join Game</button>
-            {isHighscoresShown && <HighScores />}
-            {isFormShown && <CreateGame />}
-            {isJoinFormShown && <JoinGame />}
+            <div className="start-form-section">
+              <button onClick={toggleForm} className="btn">Create Game</button>
+              <button onClick={toggleJoinForm} className="btn">Join Game</button>
+            </div>
+            {isHighscoresShown && <HighScores />}   {/* should redirect to another page */}
+
+            <div className="form-section">
+              {isFormShown && <CreateGame />}
+              {isJoinFormShown && <JoinGame />}
+            </div>
           </div>
         </div>
       </div>
