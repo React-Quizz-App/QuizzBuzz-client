@@ -27,7 +27,7 @@ const Landing = () => {
     }, 5000)
 }
 
-// setInterval(createCircle, 150) 
+setInterval(createCircle, 150) 
 
   const [isFormShown, setIsFormShown] = useState(false);
   const [isJoinFormShown, setIsJoinFormShown] = useState(false);
@@ -49,7 +49,7 @@ const Landing = () => {
             {isHighscoresShown && <HighScores />}   {/* should redirect to another page */}
 
             <div className="form-section">
-              {isFormShown && <CreateGame />}
+              {isFormShown && <Create Game />}
               {isJoinFormShown && <JoinGame />}
             </div>
           </div>
