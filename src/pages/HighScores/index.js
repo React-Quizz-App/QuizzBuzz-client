@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './style.css';
 import { render } from 'react-dom';
 
 const HighScores = () => {
@@ -14,15 +15,15 @@ const HighScores = () => {
 
   async function fetchFilteredHighScores() {
     let { data } = await axios.get(`http://localhost:3000/highscores/${categoryFilter}/${difficultyFilter}`);
-    console.log(data);
+    // console.log(data);
     setFilteredHighScores(data);
   }
 
-  console.log(filteredHighScores);
+  //   console.log(filteredHighScores);
 
   const sortHighscores = () => {
     if (filteredHighScores.length) {
-      console.log(filteredHighScores);
+      //   console.log(filteredHighScores);
       const arr = filteredHighScores.map((sortedScore, index) => {
         let rank = index + 1;
         let id = sortedScore._id;
@@ -38,8 +39,7 @@ const HighScores = () => {
   //   console.log(sortHighscores());
 
   let saveSortedHighScores = filteredHighScores.length ? sortHighscores() : [];
-  console.log(saveSortedHighScores);
-  //Cannot happen until fetch is called as filteredHighscores empty until then
+  //   console.log(saveSortedHighScores);
 
   let renderHighscores = saveSortedHighScores.map((s, i) => (
     <div key={i}>
@@ -49,26 +49,24 @@ const HighScores = () => {
     </div>
   ));
 
-  console.log(categoryFilter, difficultyFilter);
+  //   console.log(categoryFilter, difficultyFilter);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let rafCode = await fetchFilteredHighScores();
-    //ISSUE IS HERE
-    console.log(rafCode);
+    // console.log(rafCode);
     toggleHighscoreFilter();
     setCategoryFilter('');
     setDifficultyFilter('');
   };
 
-  console.log(isFilterSelected);
+  //   console.log(isFilterSelected);
 
   return (
-    <div>
+    <div id="highscores">
       {isFilterSelected ? (
         renderHighscores
       ) : (
-        // <h2>CHECKING</h2>
         <form onSubmit={handleSubmit}>
           <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
             <option value="placeholder">By Category</option>
