@@ -1,92 +1,87 @@
 .landing-page {
-    width: 100%;
-    height: 85vh;
-    position: absolute;
-    top: 15vh;
-    background: #1E2240;
+  width: 100%;
+  height: 85vh;
+  position: absolute;
+  top: 15vh;
+  background: #081127;
 }
-.inner-container{
-    position: relative;
+.inner-container {
+  position: relative;
 }
 .landing-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 #high-score-btn {
-    position: absolute;
-    right: 0;
-    margin: 20px;
+  position: absolute;
+  right: 0;
+  margin: 20px;
 }
 .start-form-section {
-    width: 100%;
-    /* border: solid 1px red; */
-    margin-top: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  /* border: solid 1px red; */
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .form-section {
-    width: 100%;
-    /* border: solid 1px green; */
-    height: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  /* border: solid 1px green; */
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .btn {
-    height: 35px;
-    width: 20%;
-    margin: 30px;
+  height: 35px;
+  width: 20%;
+  margin: 30px;
 }
 .landing-page span {
-    pointer-events: none;
-    animation: animate 5s linear infinite;
+  pointer-events: none;
+  animation: animate 5s linear infinite;
 }
 @keyframes animate {
-    0%
-    {
-        transform: scale(0) translateY(0);
-        opacity: 0;
-    }
-    10%
-    {
-        opacity: 1;
-    }
-    90%
-    {
-        opacity: 1;
-    }
-    100%
-    {
-        transform: scale(1) translateY(-500%);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(0) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-500%);
+    opacity: 0;
+  }
 }
 
-
-.create-modal-container{
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    width: 50vw;
-    height: 50vh;
-    margin: auto;
-    margin-top: 20vh;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+.create-modal-container {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  margin-top: 20vh;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.create-input{
-    margin-top: 5px;
-    margin-bottom: 5px;
+.create-input {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.create-form-container{
-    width: auto;
+.create-form-container {
+  width: auto;
 }
