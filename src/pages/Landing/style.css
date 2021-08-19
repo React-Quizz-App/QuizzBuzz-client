@@ -38,9 +38,9 @@
   align-items: center;
 }
 .btn {
-  height: 35px;
-  width: 20%;
-  margin: 30px;
+    height: 45px;
+    width: 20%;
+    margin: 30px;
 }
 .landing-page span {
   pointer-events: none;
