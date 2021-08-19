@@ -8,10 +8,40 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    icon: { color: "white" },
+    label: { color: "white" },
   },
   button: {
     marginLeft: theme.spacing(5),
   },
+//   select: {
+//     '&:before': {
+//         borderColor: "white",
+//     },
+//     '&:after': {
+//         borderColor: "white",
+//     }
+// },
+select: {
+  "& .MuiSvgIcon-root": {
+    color: "white",
+  },
+  "&:after": {
+    borderBottomColor: "white",
+  },
+  "&:before": {
+    borderBottomColor: "white",
+  },
+  "& .MuiSelect-root": {
+    color: "white",
+  },
+},
+icon: {
+    fill: "white",
+},
+label: {
+  fill:"white",
+}
 }));
 
 const HighScores = () => {
@@ -61,12 +91,18 @@ const HighScores = () => {
   ));
 
   let scoreElements = filteredScores.map((s, i) => (
-    <div key={i}>
-      <p className="rank">{i + 1}</p>
-      <p className="userName">{s.name}</p>
-      <p className="userScore">{s.score}</p>
+    <div className="each-player-section" key={i}>
+      <div className="rank">{i + 1}</div>
+      <div className="player-name">{s.name}</div>
+      <div className="player-score">{s.score}</div>
     </div>
   ));
+  // <div className="each-player-section" key={index}>
+  //     <div className="rank">{index+1}</div>
+  //     <div className="player-name">{user.name}</div>
+  //     <div className="player-score">{user.score}</div>
+  //     <div className="game-status">{user.hasCompletedQuiz ? "Finished" : "Playing"}</div>
+  //   </div>
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,30 +113,36 @@ const HighScores = () => {
   };
 
   return (
-    <div id="highscores">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <FormControl className={classes.formControl}>
-            <InputLabel>By Category</InputLabel>
-            <Select value={categoryFilter} onChange={handleCategoryFilter}>
-              {dropdownItems}
-            </Select>
-          </FormControl>
-
-          <FormControl className={classes.formControl}>
-            <InputLabel>By Difficulty</InputLabel>
-            <Select value={difficultyFilter} onChange={handleDifficultyFilter}>
-              <MenuItem value="easy">Easy</MenuItem>
-              <MenuItem value="medium">Medium</MenuItem>
-              <MenuItem value="hard">Hard</MenuItem>
-            </Select>
-          </FormControl>
+    <div className="highscore-page">
+      <div className="outer-container">
+        <div className="inner-container">
+          <div className="scoreboard-heading score-board"><h1>High Scores</h1></div>
+          <div className="highscore-form">
+            <form onSubmit={handleSubmit} className="the-actual-form">
+              <div className="form-container">
+                <FormControl className={classes.formControl}>
+                  <InputLabel className="white-label">By Category</InputLabel>
+                  <Select className={classes.select} value={categoryFilter} onChange={handleCategoryFilter}>
+                    {dropdownItems}
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <InputLabel className="white-label">By Difficulty</InputLabel>
+                  <Select className={classes.select} value={difficultyFilter} onChange={handleDifficultyFilter}>
+                    <MenuItem value="easy">Easy</MenuItem>
+                    <MenuItem value="medium">Medium</MenuItem>
+                    <MenuItem value="hard">Hard</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <Button className="filter-score-btn" type="submit" variant="outlined" color="default">
+                Filter Results
+              </Button>
+            </form>
+          </div>
+          <div className="highscore-results">{scoreElements}</div>
         </div>
-        <Button type="submit" variant="outlined" color="default">
-          Filter Results
-        </Button>
-      </form>
-      {scoreElements}
+      </div>
     </div>
   );
 };

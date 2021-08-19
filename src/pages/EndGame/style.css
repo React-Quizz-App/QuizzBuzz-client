@@ -18,11 +18,13 @@
 }
 .scoreboard-heading {
   /* border: solid 1px red; */
+  color: white;
   width: 100%;
   height: 10%;
   display: flex;
   justify-content:center;
   align-items: center;
+  font-family: 'Press Start 2P', cursive;
 }
 .scoreboard{
   height: 80%;
@@ -35,10 +37,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+}
+.scoreboard-scroll-area::-webkit-scrollbar {
+  display: none;
 }
 .each-player-section {
   width: 80%;
-  height: 15%;
+  min-height: 70px;
   border: solid 1px orange;
   border-radius: 10px;
   display: flex;
