@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { startGame } from '../../actions';
@@ -30,7 +30,7 @@ const WaitingRoom = () => {
         socket.emit('send state to players', newState )
     }
     return (
-        <> 
+        <>
         {data.users && <div className="waiting-room-page">
             {/* <header>
                 <div>

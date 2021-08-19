@@ -161,7 +161,6 @@ const Game = () => {
   if (questionNumber > 10){
     socket.emit('complete quiz', {room: gameState.roomName, user: clientUser})
   }
-  
   return (
     <>
     <div className="game-page">
