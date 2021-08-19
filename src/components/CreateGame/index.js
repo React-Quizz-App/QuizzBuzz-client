@@ -27,6 +27,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const categoryMap = {
+  "General Knowledge": 9,
+  "Entertainment: Books": 10,
+  "Entertainment: Film": 11,
+  "Entertainment: Music": 12,
+  "Entertainment: Musicicals & Theatres": 13,
+  "Entertainment: Television": 14,
+  "Entertainment: Video Games": 15,
+  "Entertainment: Board Games": 16,
+  "Science & Nature": 17,
+  "Science: Computers": 18,
+  "Science: Mathematics": 19,
+  "Mythology": 20,
+  "Sports": 21,
+  "Geography": 22,
+  "History": 23,
+  "Celebrities": 26,
+  "Animals": 27,
+  "Vehicles": 28,
+  "Entertainment: Comics": 29,
+  "Entertainment: Japanese Anime & Manga": 31,
+  "Entertainment: Cartoon & Animations": 32,
+};
+
+const categoriesArr = Object.keys(categoryMap);
+
 const CreateGame = () => {
   const classes = useStyles();
   //States
@@ -50,14 +76,6 @@ const CreateGame = () => {
   }
 
   async function getQuestions(cat, diff) {
-    const categoryMap = {
-      "General Knowledge": 9,
-      "Entertainment: Books": 10,
-      "Entertainment: Film": 11,
-      "Entertainment: Music": 12,
-      "Science: Computers": 18,
-      Sports: 21,
-    };
     const url = `https://opentdb.com/api.php?amount=10&category=${categoryMap[cat]}&difficulty=${diff}&type=multiple`;
     const { data } = await axios.get(url);
     return data.results;
@@ -93,6 +111,8 @@ const CreateGame = () => {
     setIsFormSubmitted(true);
   };
 
+  const dropdownItems = categoriesArr.map(item => <MenuItem key = {item} value={item}>{item}</MenuItem>)
+
   return (
     <div className='create-form-container'>
     <form onSubmit={handleFormSubmit}>
@@ -103,12 +123,7 @@ const CreateGame = () => {
         <FormControl className={classes.formControl}>
           <InputLabel >Category</InputLabel>
           <Select value={category} onChange={handleCategory}>
-            <MenuItem value="General Knowledge">General Knowledge</MenuItem>
-            <MenuItem value="Entertainment: Books">Entertainment: Books</MenuItem>
-            <MenuItem value="Entertainment: Film">Entertainment: Film</MenuItem>
-            <MenuItem value="Entertainment: Music">Entertainment: Music</MenuItem>
-            <MenuItem value="Sports">Sports</MenuItem>
-            <MenuItem value="Science: Computers">Science: Computers</MenuItem>
+            {dropdownItems}
           </Select>
         </FormControl>
       </div>
