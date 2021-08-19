@@ -1,30 +1,64 @@
-#highscores {
-  padding-top: 210px;
-  text-align: center;
-  /* background-color: #081127; */
-  color: #ec8916;
-  height: 150vw;
+.highscore-page {
+  width: 100%;
+  height: 85vh;
+  position: absolute;
+  top: 15vh;
+  background: #081127;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+
 }
-
-/* #EC8916 */
-
-/* form {
-  padding-top: 20px;
-} */
-
-/* Below will actually change to be a table */
-
-/* .rank {
-  margin-left: 25vw;
-  display: inline;
+.highscore-form {
+  width: 100%;
+  height: 20%;
+  /* border: solid 1px red; */
+  /* background: orange; */
+  display: flex;
+  justify-content: center;
+  align-items:center;
 }
-
-.userName {
-  margin-left: 50vw;
-  display: inline;
+.highscore-results {
+  height: 80%;
+  /* border: solid 1px red; */
 }
-
-.userScore {
-  margin-right: 75vw;
-  display: inline;
-} */
+.form-container {
+  /* border: solid 1px red; */
+  /* background: orange; */
+  /* width: 40%; */
+  
+}
+.white-label{
+  color: white !important;
+}
+.filter-score-btn{
+  border: solid 1px orange !important;
+  margin-top: 10px !important;
+  padding: 10px 50px !important;
+  color: white !important;
+  transition: ease-in-out 0.1s !important;
+}
+.filter-score-btn:hover {
+  background: orange !important;
+}
+.the-actual-form {
+  /* border: solid 1px blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.score-board {
+  margin-top: 10px;
+}
+.highscore-results {
+  height: 60%;
+  margin-top: 10px;
+  /* border: solid 1px green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.highscore-results::-webkit-scrollbar {
+  display: none;
+}
