@@ -73,10 +73,12 @@
 }
 .time-left {
     height: 100%;
+    width: 0%;
     background: rgba(255, 166, 0, 0.863);
-    animation: progress-animation 30s linear;
+    /* transition: all linear; */
+    /* animation: progress-animation 5s linear; */
 }
-@keyframes progress-animation {
+/* @keyframes progress-animation {
     0% {
         width: 100%;
     }
@@ -84,4 +86,4 @@
         width: 0%;
     }
     
-}
+} */

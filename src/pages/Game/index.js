@@ -146,12 +146,12 @@ const Game = () => {
 //     "isGameStarted": true
 // }
 
-  // const questionNumber = gameState.questionNumber;
-  // console.log(questionNumber)
-  // const gameQuestions = gameState.questions;
-  // const gameUsers = gameState.users;
-  // const socket = socket;
-  // const clientUser = "user";
+//   const questionNumber = gameState.questionNumber;
+//   console.log(questionNumber)
+//   const gameQuestions = gameState.questions;
+//   const gameUsers = gameState.users;
+//   const socket = socket;
+//   const clientUser = "user";
 
   const userElements = gameUsers.map(user => <div key={user.name} className="in-game-user-score">
     <h2>{user.name}</h2>

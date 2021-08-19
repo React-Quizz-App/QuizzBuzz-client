@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { incrementQuestionNumber, updateScore } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import he from 'he';
-import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
+import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel, Button, ThemeProvider } from '@material-ui/core';
 import './style.css'
 
 
@@ -17,6 +17,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
   const gameState = useSelector(state => state.gameState);
   const socket = useSelector(state => state.socket);
   const clientUser = useSelector(state => state.user);
+  const proRef = useRef();
 
   useEffect(()=>{
     setShuffledAnswers([correct_answer, ...incorrect_answers].sort(() => Math.random() - 0.5))
@@ -38,9 +39,10 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       } else {
         console.log('game over');
         setIsGameOver(true);
-    
       }
-    };
+    }
+    resetProgressBar()
+    ;
   }, [counter])
 
   function handleChange(event){
@@ -69,6 +71,10 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
     <FormControlLabel key={answer} value={answer} control={<Radio />} label={he.decode(answer)} />
   ));
 
+  const resetProgressBar = () => {
+    proRef.current.style.width = `${counter*10/3}%`;
+    console.log(proRef.current.style.width)
+  }
 
   return (
     <>
@@ -77,8 +83,8 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
         <h2>{he.decode(question)}</h2>
       </div>
       <div className="progress-bar">
-        <div className="time-left">
-        {/* {counter} */}
+        <div className="time-left" ref={proRef}>
+        {counter}
         </div>
       </div>
       <div className="answer-options-section">
