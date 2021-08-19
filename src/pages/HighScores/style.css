@@ -1,7 +1,12 @@
 #highscores {
   padding-top: 210px;
   text-align: center;
+  /* background-color: #081127; */
+  color: #ec8916;
+  height: 150vw;
 }
+
+/* #EC8916 */
 
 /* form {
   padding-top: 20px;

@@ -1,102 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
-import { render } from 'react-dom';
+import { Button, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  button: {
+    marginLeft: theme.spacing(5),
+  },
+}));
 
 const HighScores = () => {
+  const classes = useStyles();
   const [categoryFilter, setCategoryFilter] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('');
-  const [filteredHighScores, setFilteredHighScores] = useState([]);
-  const [isFilterSelected, setIsFilterSelected] = useState(false);
+  const [allScores, setAllScores] = useState([]);
+  const [filteredScores, setFilteredScores] = useState([]);
 
   const handleCategoryFilter = (e) => setCategoryFilter(e.target.value);
   const handleDifficultyFilter = (e) => setDifficultyFilter(e.target.value);
-  const toggleHighscoreFilter = () => setIsFilterSelected((prev) => !prev);
 
-  async function fetchFilteredHighScores() {
-    let { data } = await axios.get(`http://localhost:3000/highscores/${categoryFilter}/${difficultyFilter}`);
-    // console.log(data);
-    setFilteredHighScores(data);
-  }
+  useEffect(async () => {
+    const { data } = await axios.get('https://quizzbuzz-api.herokuapp.com/highscores');
+    setAllScores(data);
+  }, []);
 
-  //   console.log(filteredHighScores);
-
-  const sortHighscores = () => {
-    if (filteredHighScores.length) {
-      //   console.log(filteredHighScores);
-      const arr = filteredHighScores.map((sortedScore, index) => {
-        let rank = index + 1;
-        let id = sortedScore._id;
-        let username = sortedScore.name;
-        let score = sortedScore.score;
-        // console.log(rank, id, username, score);
-        return { rank, id, username, score };
-      });
-      return arr;
-    }
+  const categoryMap = {
+    'General Knowledge': 9,
+    'Entertainment: Books': 10,
+    'Entertainment: Film': 11,
+    'Entertainment: Music': 12,
+    'Entertainment: Musicicals & Theatres': 13,
+    'Entertainment: Television': 14,
+    'Entertainment: Video Games': 15,
+    'Entertainment: Board Games': 16,
+    'Science & Nature': 17,
+    'Science: Computers': 18,
+    'Science: Mathematics': 19,
+    Mythology: 20,
+    Sports: 21,
+    Geography: 22,
+    History: 23,
+    Celebrities: 26,
+    Animals: 27,
+    Vehicles: 28,
+    'Entertainment: Comics': 29,
+    'Entertainment: Japanese Anime & Manga': 31,
+    'Entertainment: Cartoon & Animations': 32,
   };
 
-  let saveSortedHighScores = filteredHighScores.length ? sortHighscores() : [];
-  //   console.log(saveSortedHighScores);
+  const categoriesArr = Object.keys(categoryMap);
+  const dropdownItems = categoriesArr.map((item) => (
+    <MenuItem key={item} value={item}>
+      {item}
+    </MenuItem>
+  ));
 
-  let renderHighscores = saveSortedHighScores.map((s, i) => (
+  let scoreElements = filteredScores.map((s, i) => (
     <div key={i}>
-      <p className="rank">{s.rank}</p>
-      <p className="userName">{s.username}</p>
+      <p className="rank">{i + 1}</p>
+      <p className="userName">{s.name}</p>
       <p className="userScore">{s.score}</p>
-      <button onClick={toggleHighscoreFilter}>Reset</button>
     </div>
   ));
 
-  //   console.log(categoryFilter, difficultyFilter);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(rafCode);
-    if (isFilterSelected) {
-      alert('Please reset form');
-    } else {
-      let rafCode = await fetchFilteredHighScores();
-      toggleHighscoreFilter();
-    }
-    e.target.reset();
-    setCategoryFilter('');
-    setDifficultyFilter('');
+    let allScoresClone = [...allScores];
+    let newFilteredScores = allScoresClone.filter((item) => item.category === categoryFilter && item.difficulty === difficultyFilter);
+    let sortedNewFilteredScores = newFilteredScores.sort((a, b) => Number(b.score) - Number(a.score));
+    setFilteredScores(sortedNewFilteredScores);
   };
-
-  //   console.log(isFilterSelected);
 
   return (
     <div id="highscores">
       <form onSubmit={handleSubmit}>
-        <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
-          {/* <option value="placeholder">By Category</option> */}
-          <option value="starter" selected="selected">
-            By Category{' '}
-          </option>
-          <option value="General Knowledge">General Knowledge</option>
-          <option value="Entertainment: Books">Entertainment: Books</option>
-          <option value="gaming">Entertainment: Film</option>
-          <option value="Entertainment: Music">Entertainment: Music</option>
-          <option value="sports">Sports</option>
-          <option value="Science: Computers">Science: Computers</option>
-        </select>
-        <select name="Difficulty" id="difficulty-filter" onChange={handleDifficultyFilter} required>
-          {/* <option value="placeholder-for-difficulty">By Difficulty</option> */}
-          <option value="starter" selected="selected">
-            By Difficulty{' '}
-          </option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-        <input type="submit" value="Filter Results" />
+        <div>
+          <FormControl className={classes.formControl}>
+            <InputLabel>By Category</InputLabel>
+            <Select value={categoryFilter} onChange={handleCategoryFilter}>
+              {dropdownItems}
+            </Select>
+          </FormControl>
+
+          <FormControl className={classes.formControl}>
+            <InputLabel>By Difficulty</InputLabel>
+            <Select value={difficultyFilter} onChange={handleDifficultyFilter}>
+              <MenuItem value="easy">Easy</MenuItem>
+              <MenuItem value="medium">Medium</MenuItem>
+              <MenuItem value="hard">Hard</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <Button type="submit" variant="outlined" color="default">
+          Filter Results
+        </Button>
       </form>
-      {isFilterSelected ? renderHighscores : <p></p>}
+      {scoreElements}
     </div>
   );
 };
 
 export default HighScores;
-
-//Can try to hide button if isFilterSelected is off. And also have reset button on
