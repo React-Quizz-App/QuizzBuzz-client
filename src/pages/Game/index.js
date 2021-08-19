@@ -22,18 +22,30 @@ const Game = () => {
 //     ],
 //     "questionNumber": 1,
 //     "questions": [
+//       {
+//         "category": "Entertainment: Books",
+//         "type": "multiple",
+//         "difficulty": "easy",
+//         "question": "Which famous book is sub-titled &#039;The Modern Prometheus&#039;?",
+//         "correct_answer": "Frankenstein",
+//         "incorrect_answers": [
+//             "Dracula",
+//             "The Strange Case of Dr. Jekyll and Mr. Hyde ",
+//             "The Legend of Sleepy Hollow"
+//         ]
+//     },
 //         {
-//             "category": "Entertainment: Books",
-//             "type": "multiple",
-//             "difficulty": "easy",
-//             "question": "Which famous book is sub-titled &#039;The Modern Prometheus&#039;?",
-//             "correct_answer": "Frankenstein",
-//             "incorrect_answers": [
-//                 "Dracula",
-//                 "The Strange Case of Dr. Jekyll and Mr. Hyde ",
-//                 "The Legend of Sleepy Hollow"
-//             ]
-//         },
+//         "category": "Entertainment: Books",
+//         "type": "multiple",
+//         "difficulty": "easy",
+//         "question": "In the novel 1984, written by George Orwell, what is the name of the totalitarian regime that controls Oceania?",
+//         "correct_answer": "INGSOC",
+//         "incorrect_answers": [
+//             "Neo-Bolshevism",
+//             "Obliteration of the Self",
+//             "Earth Alliance"
+//         ]
+//          },
 //         {
 //             "category": "Entertainment: Books",
 //             "type": "multiple",
@@ -128,18 +140,6 @@ const Game = () => {
 //                 "A Dance with Dragons",
 //                 "A Storm of Swords",
 //                 "A Feast for Crows"
-//             ]
-//         },
-//         {
-//             "category": "Entertainment: Books",
-//             "type": "multiple",
-//             "difficulty": "easy",
-//             "question": "In the novel 1984, written by George Orwell, what is the name of the totalitarian regime that controls Oceania?",
-//             "correct_answer": "INGSOC",
-//             "incorrect_answers": [
-//                 "Neo-Bolshevism",
-//                 "Obliteration of the Self",
-//                 "Earth Alliance"
 //             ]
 //         }
 //     ],

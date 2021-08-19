@@ -20,7 +20,7 @@ const WaitingRoom = () => {
     //         {name: "Tom", score: 0}, {name: "Jawwad", score:0}, {name:"Rafika", score:0}
     //     ],
     // }
-    // const user = "Tom"
+    // const user = "Akash"
     function handleButtonClick(){
         dispatch(startGame());
         let newState = {
