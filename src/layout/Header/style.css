@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
 }
 .page-header {
   width: 100%;
@@ -19,7 +20,7 @@
 header {
   width: 100%;
   height: 100%;
-  background: #ec8916;
+  background: #EC8916;
   display: flex;
   justify-content: center;
   align-items: center;

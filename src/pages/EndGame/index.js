@@ -14,11 +14,13 @@ const EndGame = () => {
   const sortedUsers = users.sort((a, b) => b.score - a.score);
   const haveAllUsersFinished = users.every((user) => user.hasCompletedQuiz);
   const clientScore = users.find(item => item.name === clientUser).score;
+
   const playerCards = sortedUsers.map((user, index) => (
-    <div key={index}>
-      <h2>{index+1}</h2>
-      <h2>{user.name}</h2>
-      <h2>{user.score}</h2>
+    <div className="each-player-section" key={index}>
+      <div className="rank">{index+1}</div>
+      <div className="player-name">{user.name}</div>
+      <div className="player-score">{user.score}</div>
+      <div className="game-status">{user.hasCompletedQuiz ? "Finished" : "Playing"}</div>
     </div>
   ));
   const handleScores = async () => {
@@ -41,13 +43,22 @@ const EndGame = () => {
     setIsScoreSubmitted(true);
   };
   return (
-    <div className="scores-container">
-      {playerCards}
-      {haveAllUsersFinished && (
-        <Button onClick={handleScores}>Update Leaderboard!</Button>
-      )}
-      {isScoreSubmitted && <Redirect to="/highscores" />}
-      {haveAllUsersFinished && <h3>{sortedUsers[0].name} is the winner!</h3>}
+    <div className="end-game-page">
+      <div className="outer-container">
+        <div className="inner-container">
+          <div className="scoreboard-section">
+            <div className="scoreboard-heading"><h1>Score Board</h1></div>
+            <div className="scoreboard">
+              <div className="scoreboard-scroll-area">{playerCards}</div>
+              {haveAllUsersFinished && <h3 className="winner"><span className="winner-name">{sortedUsers[0].name}</span> is the winner!</h3>}
+              {haveAllUsersFinished && (
+                <Button onClick={handleScores} className="add-high-score">Add High Score!</Button>
+              )}
+              {isScoreSubmitted && <Redirect to="/highscores" />}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

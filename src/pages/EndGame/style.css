@@ -1,3 +1,105 @@
-.scores-container {
-  margin: auto;
+.end-game-page {
+  width: 100%;
+  height: 85vh;
+  position: absolute;
+  top:15vh;
+  background: #081127;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+
+}
+.scoreboard-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.scoreboard-heading {
+  /* border: solid 1px red; */
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.scoreboard{
+  height: 80%;
+  width:100%;
+}
+.scoreboard-scroll-area {
+  height: 80%;
+  width: 100%;
+  /* border: solid 1px green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.each-player-section {
+  width: 80%;
+  height: 15%;
+  border: solid 1px orange;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  transition: ease-in-out 0.1s;
+}
+.each-player-section:hover {
+  background: orange;
+}
+.rank {
+  width: 10%;
+  height: 100%;
+  /* border: solid 1px blue; */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.player-name {
+  width: 40%;
+  height: 100%;
+  /* border: solid 1px blue; */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.player-score {
+  width: 10%;
+  height: 100%;
+  /* border: solid 1px blue; */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.game-status {
+  width: 20%;
+  height: 100%;
+  /* border: solid 1px blue; */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.winner {
+  /* border: solid 1px blue; */
+  width: 100%;
+  margin: 20px 0 0 0;
+  height: 8%;
+  text-align: center;
+}
+.add-high-score{
+  border: solid 1px orange !important;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 10px 50px !important;
+  color: white !important;
+  transition: ease-in-out 0.1s !important;
+}
+.add-high-score:hover {
+  background: orange !important;
+}
+.winner-name {
+  color: orange;
 }
