@@ -3,7 +3,10 @@ import { Landing, WaitingRoom, Game, HighScores, EndGame } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 const io = require("socket.io-client");
-const ENDPOINT = "http://localhost:3000"; // https://quizzbuzz-api.herokuapp.com
+const ENDPOINT = "https://quizzbuzz-api.herokuapp.com";
+
+// http://localhost:3000
+
 import {
   changeState,
   storeSocket,
