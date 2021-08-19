@@ -29,7 +29,7 @@ const HighScores = () => {
         let id = sortedScore._id;
         let username = sortedScore.name;
         let score = sortedScore.score;
-        console.log(rank, id, username, score);
+        // console.log(rank, id, username, score);
         return { rank, id, username, score };
       });
       return arr;
@@ -44,6 +44,7 @@ const HighScores = () => {
       <p className="rank">{s.rank}</p>
       <p className="userName">{s.username}</p>
       <p className="userScore">{s.score}</p>
+      <button onClick={toggleHighscoreFilter}>Reset</button>
     </div>
   ));
 
@@ -51,9 +52,14 @@ const HighScores = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let rafCode = await fetchFilteredHighScores();
     // console.log(rafCode);
-    toggleHighscoreFilter();
+    if (isFilterSelected) {
+      alert('Please reset form');
+    } else {
+      let rafCode = await fetchFilteredHighScores();
+      toggleHighscoreFilter();
+    }
+    e.target.reset();
     setCategoryFilter('');
     setDifficultyFilter('');
   };
@@ -64,7 +70,10 @@ const HighScores = () => {
     <div id="highscores">
       <form onSubmit={handleSubmit}>
         <select name="Category" id="category-filter" onChange={handleCategoryFilter} required>
-          <option value="placeholder">By Category</option>
+          {/* <option value="placeholder">By Category</option> */}
+          <option value="starter" selected="selected">
+            By Category{' '}
+          </option>
           <option value="General Knowledge">General Knowledge</option>
           <option value="Entertainment: Books">Entertainment: Books</option>
           <option value="gaming">Entertainment: Film</option>
@@ -73,7 +82,10 @@ const HighScores = () => {
           <option value="Science: Computers">Science: Computers</option>
         </select>
         <select name="Difficulty" id="difficulty-filter" onChange={handleDifficultyFilter} required>
-          <option value="placeholder-for-difficulty">Difficulty</option>
+          {/* <option value="placeholder-for-difficulty">By Difficulty</option> */}
+          <option value="starter" selected="selected">
+            By Difficulty{' '}
+          </option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
@@ -86,3 +98,5 @@ const HighScores = () => {
 };
 
 export default HighScores;
+
+//Can try to hide button if isFilterSelected is off. And also have reset button on
