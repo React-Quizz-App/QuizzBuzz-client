@@ -153,7 +153,7 @@ const Game = () => {
 //   const socket = socket;
 //   const clientUser = "user";
 
-  const userElements = gameUsers.map(user => <div key={user.name} class="in-game-user-score">
+  const userElements = gameUsers.map(user => <div key={user.name} className="in-game-user-score">
     <h2>{user.name}</h2>
     <h3>{user.score}</h3>
   </div>)
