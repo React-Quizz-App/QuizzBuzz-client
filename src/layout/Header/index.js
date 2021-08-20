@@ -5,7 +5,7 @@ const Header = () => {
         <div className="page-header">
             <header>
                 <div>
-                    <h1 aria-label='main heading'>QUIZZBUZZ</h1>
+                    <h1>QUIZZBUZZ</h1>
                 </div>
              </header>
         </div>
