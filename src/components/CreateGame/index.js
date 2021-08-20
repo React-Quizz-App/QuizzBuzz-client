@@ -32,7 +32,7 @@ const categoryMap = {
   "Entertainment: Books": 10,
   "Entertainment: Film": 11,
   "Entertainment: Music": 12,
-  "Entertainment: Musicicals & Theatres": 13,
+  "Entertainment: Musicals & Theatres": 13,
   "Entertainment: Television": 14,
   "Entertainment: Video Games": 15,
   "Entertainment: Board Games": 16,
