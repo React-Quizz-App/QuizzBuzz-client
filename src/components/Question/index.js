@@ -84,7 +84,7 @@ const Question = ({ data: { question, correct_answer, incorrect_answers } }) => 
       </div>
       <div className="progress-bar">
         <div className="time-left" ref={proRef}>
-        {counter}
+        {/* {counter} */}
         </div>
       </div>
       <div className="answer-options-section">
